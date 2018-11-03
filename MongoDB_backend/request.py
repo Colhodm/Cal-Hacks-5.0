@@ -78,7 +78,7 @@ def validLogin(username, password):
 
 
 def getContractSpatial(lat, lon, radius) :
-	query = contracts.find({"startLocation": {"$within": {"$center": [[lat, lon], radius]}}})
+	query = contracts.find( {"$and" :[{"valid": True},{"startLocation": {"$within": {"$center": [[lat, lon], radius]}}} ]})
 	return query
 
 
