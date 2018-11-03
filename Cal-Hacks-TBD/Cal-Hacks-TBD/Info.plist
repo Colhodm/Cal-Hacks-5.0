@@ -20,7 +20,7 @@
 	<string>Random Stuff</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Random stuff</string>
-	<key>NSLocationWhenInUseUsageDescription	</key>
+	<key>NSLocationWhenInUseUsageDescription    </key>
 	<string>Random Stuff</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
@@ -55,5 +55,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict/>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
 </dict>
 </plist>

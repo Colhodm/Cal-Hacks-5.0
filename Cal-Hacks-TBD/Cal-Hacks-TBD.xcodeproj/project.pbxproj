@@ -16,6 +16,8 @@
 		89917CF6218D3CC900861141 /* Cal_Hacks_TBDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CF5218D3CC900861141 /* Cal_Hacks_TBDTests.swift */; };
 		89917D01218D3CC900861141 /* Cal_Hacks_TBDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */; };
 		89917D0F218D3F6000861141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D0E218D3F6000861141 /* MapViewController.swift */; };
+		BF965B1AC0DE466529F9AB5A /* libPods-Cal-Hacks-TBDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A859825716A2636E7D2DD920 /* libPods-Cal-Hacks-TBDTests.a */; };
+		DF7E1D4B1E2CF6B06842E064 /* libPods-Cal-Hacks-TBDUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEC57D62B32A6F6325C07E3 /* libPods-Cal-Hacks-TBDUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,10 @@
 
 /* Begin PBXFileReference section */
 		101992B751A676490535F095 /* Pods-Cal-Hacks-TBD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.release.xcconfig"; sourceTree = "<group>"; };
+		2051F5DCDC2C6537CF5EB28A /* Pods-Cal-Hacks-TBDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDTests/Pods-Cal-Hacks-TBDTests.debug.xcconfig"; sourceTree = "<group>"; };
+		278A200F437F689B9D8673A3 /* Pods-Cal-Hacks-TBDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.debug.xcconfig"; sourceTree = "<group>"; };
+		54C8615B64C88ED35A152416 /* Pods-Cal-Hacks-TBDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		89917CDD218D3CC700861141 /* Cal-Hacks-TBD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cal-Hacks-TBD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89917CE0218D3CC700861141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89917CE2218D3CC700861141 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +57,10 @@
 		89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_Hacks_TBDUITests.swift; sourceTree = "<group>"; };
 		89917D02218D3CC900861141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89917D0E218D3F6000861141 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9DEC57D62B32A6F6325C07E3 /* libPods-Cal-Hacks-TBDUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBDUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A859825716A2636E7D2DD920 /* libPods-Cal-Hacks-TBDTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBDTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF07E1E37DA08C86FFD9E586 /* Pods-Cal-Hacks-TBDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDTests/Pods-Cal-Hacks-TBDTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF965B1AC0DE466529F9AB5A /* libPods-Cal-Hacks-TBDTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF7E1D4B1E2CF6B06842E064 /* libPods-Cal-Hacks-TBDUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */,
+				A859825716A2636E7D2DD920 /* libPods-Cal-Hacks-TBDTests.a */,
+				9DEC57D62B32A6F6325C07E3 /* libPods-Cal-Hacks-TBDUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,6 +160,10 @@
 			children = (
 				3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */,
 				101992B751A676490535F095 /* Pods-Cal-Hacks-TBD.release.xcconfig */,
+				2051F5DCDC2C6537CF5EB28A /* Pods-Cal-Hacks-TBDTests.debug.xcconfig */,
+				FF07E1E37DA08C86FFD9E586 /* Pods-Cal-Hacks-TBDTests.release.xcconfig */,
+				54C8615B64C88ED35A152416 /* Pods-Cal-Hacks-TBDUITests.debug.xcconfig */,
+				278A200F437F689B9D8673A3 /* Pods-Cal-Hacks-TBDUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -178,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89917D08218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBDTests" */;
 			buildPhases = (
+				11A5F248D9D3F5F73B38A02D /* [CP] Check Pods Manifest.lock */,
 				89917CED218D3CC900861141 /* Sources */,
 				89917CEE218D3CC900861141 /* Frameworks */,
 				89917CEF218D3CC900861141 /* Resources */,
@@ -196,6 +213,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89917D0B218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBDUITests" */;
 			buildPhases = (
+				B79D22F2D29D1C6A89DDE3D3 /* [CP] Check Pods Manifest.lock */,
 				89917CF8218D3CC900861141 /* Sources */,
 				89917CF9218D3CC900861141 /* Frameworks */,
 				89917CFA218D3CC900861141 /* Resources */,
@@ -281,6 +299,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11A5F248D9D3F5F73B38A02D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cal-Hacks-TBDTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		427B33872E2C8379B5601F62 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,6 +341,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B79D22F2D29D1C6A89DDE3D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cal-Hacks-TBDUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6D98642D73E0294CD8ABC2D /* [CP] Check Pods Manifest.lock */ = {
@@ -539,6 +601,7 @@
 		};
 		89917D09218D3CC900861141 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2051F5DCDC2C6537CF5EB28A /* Pods-Cal-Hacks-TBDTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -560,6 +623,7 @@
 		};
 		89917D0A218D3CC900861141 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF07E1E37DA08C86FFD9E586 /* Pods-Cal-Hacks-TBDTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -581,6 +645,7 @@
 		};
 		89917D0C218D3CC900861141 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54C8615B64C88ED35A152416 /* Pods-Cal-Hacks-TBDUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -601,6 +666,7 @@
 		};
 		89917D0D218D3CC900861141 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 278A200F437F689B9D8673A3 /* Pods-Cal-Hacks-TBDUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

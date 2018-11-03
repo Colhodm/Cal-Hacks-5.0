@@ -7,7 +7,25 @@
 		<key>Cal-Hacks-TBD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>3</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>89917CDC218D3CC700861141</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89917CF0218D3CC900861141</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89917CFB218D3CC900861141</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -1,4 +1,7 @@
 PODS:
+  - AWSAPIGateway (2.4.16):
+    - AWSCore (= 2.4.16)
+  - AWSCore (2.4.16)
   - Google-Mobile-Ads-SDK (7.35.1)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
@@ -12,6 +15,7 @@ PODS:
     - GoogleMaps/Base (= 2.7.0)
 
 DEPENDENCIES:
+  - AWSAPIGateway (~> 2.4.7)
   - Google-Mobile-Ads-SDK
   - GoogleMaps
   - GooglePlacePicker
@@ -19,17 +23,21 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AWSAPIGateway
+    - AWSCore
     - Google-Mobile-Ads-SDK
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
 
 SPEC CHECKSUMS:
+  AWSAPIGateway: 49d48577724a9f53eda1e8c53411c1f1ebac3b7b
+  AWSCore: 7c3c129991e6387bcbad7132bc3661e7135754db
   Google-Mobile-Ads-SDK: 151d5e87b4a0ae6d7d07e2cd8d55d1b41ea2e61e
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
 
-PODFILE CHECKSUM: 9f9bcbb7ff6bd893dfa7f7e3c69f2566324b2522
+PODFILE CHECKSUM: 9b3ceeba864143544ff94d47f9b961594c0c8215
 
 COCOAPODS: 1.5.3

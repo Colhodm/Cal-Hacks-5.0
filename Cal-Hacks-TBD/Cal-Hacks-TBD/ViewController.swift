@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
-import UIKit
-
+import GooglePlaces
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstBox: UITextField!
-    
+    var locationManager = CLLocationManager()
+
+
     @IBOutlet weak var secondBox: UITextField!
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -26,6 +26,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         firstBox.delegate = self
         secondBox.delegate = self
+        self.locationManager.delegate = self
+
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -46,3 +50,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
 }
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+    }
+}
+

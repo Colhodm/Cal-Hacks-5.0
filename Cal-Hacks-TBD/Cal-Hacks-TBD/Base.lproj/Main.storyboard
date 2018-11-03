@@ -39,6 +39,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1K-gj-o2c">
+                                <rect key="frame" x="150" y="539" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="3h1-n7-Cyk" kind="show" id="Z69-EN-MgI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -52,16 +60,19 @@
             </objects>
             <point key="canvasLocation" x="69.599999999999994" y="55.322338830584712"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="PeV-wZ-jsx">
             <objects>
-                <viewController id="3h1-n7-Cyk" sceneMemberID="viewController">
+                <viewController id="3h1-n7-Cyk" customClass="MapViewController" customModule="Cal_Hacks_TBD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QIN-1X-Vmf" customClass="GMSMapView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Nlh-Be-eMw"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="QIN-1X-Vmf" id="eB4-3t-JLW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggJ-qG-4p6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
