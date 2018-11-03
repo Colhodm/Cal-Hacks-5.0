@@ -42,24 +42,24 @@ class LoginController: UIViewController, UITextFieldDelegate {
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         print("HERE")
-        //if !destination.endEditing(false){
-         //   print("EXITING HERE")
-          //  return
-       // }
-        //let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
-       // let temp = quick
-        //    + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
-        //let final =    temp +  ")"
+        if !destination.endEditing(false){
+            print("EXITING HERE")
+            return
+        }
+        let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
+        let temp = quick
+            + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
+        let final =    temp +  ")"
         
         let myCoords = (locationManager.location?.coordinate)!
         let quickone = "(" + myCoords.latitude.description
         let tempone = quickone
-            + "," + myCoords.latitude.description
+            + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
         print("XXXXXX")
         print(sourcefinal)
         print("XXXXXX")
-        let parameters = ["destination":"(20,10)", "price": price.text,"userid":userid,"source":sourcefinal,"description":descriptionOfQuery.text!] as! Dictionary<String, Any>
+        let parameters = ["destination":final, "price": price.text!,"userid":"random","source":sourcefinal,"description":descriptionOfQuery.text!] as! Dictionary<String, String>
         
         
         do {

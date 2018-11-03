@@ -72,7 +72,8 @@ class MapViewController: UIViewController  {
         let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
         print(cameraUpdate)
         mapView.moveCamera(cameraUpdate)
-        locationManager.startUpdatingLocation()        
+        locationManager.startUpdatingLocation()
+        makeGetRequest()
     }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
@@ -135,10 +136,9 @@ class MapViewController: UIViewController  {
         let myCoords = (locationManager.location?.coordinate)!
         let quickone = "(" + myCoords.latitude.description
         let tempone = quickone
-            + "," + myCoords.latitude.description
+            + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
-        print(sourcefinal)
-        let parameters = ["location":"temp", "radius": "5"] as Dictionary<String, String>
+        let parameters = ["location":sourcefinal, "radius": "5"] as Dictionary<String, String>
         
         
         do {
@@ -149,28 +149,38 @@ class MapViewController: UIViewController  {
         }
             print("EVEN GETTING HERE")
             Alamofire.request(request).responseJSON { (response) in
-                var temp = response.value!
-                print(temp)
-                self.renderData(responseData: response.description)
+                let temp = response.value! as? [Any]
+                print("SHE WORKING ME")
+                self.renderData(responseData: temp!)
                 
             }
         }
     
-    func renderData(responseData: String){
+    func renderData(responseData: [Any]){
         // do some parsing to get the individual coordinates
         // assuming we create some list:
         // we're basically going to iterate through list and add them all to a path
         let path = GMSMutablePath()
         // latitude: 37.8716,longitude: -122.2727
-        let names = [(37.9716,-122.2727), (37.6716,-122.2727), (37.7716,-122.2727)]
-        for name in names {
-            path.add(CLLocationCoordinate2D(latitude: CLLocationDegrees(name.0), longitude: CLLocationDegrees(name.1)))
+        for name in responseData {
+            let myCurrent = name as? Dictionary<String,Any>
+            let start_location = myCurrent!["startLocation"] as? [Double]
+            let end_location = myCurrent!["endlocation"] as? [Double]
+            let contract_id = myCurrent!["_id"]
+            let validity = myCurrent!["valid"]
+            let price = myCurrent!["price"]
+            let position = CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1]))
+            let marker = GMSMarker(position: position)
+            marker.title = "Random"
+            marker.map = mapView
+            path.add(CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1])))
         }
         if locationManager.location != nil{
             path.add((locationManager.location?.coordinate)!)
             mapView?.isMyLocationEnabled = true
         }
     //Update your mapView with path
+        print("HERE")
        let mapBounds = GMSCoordinateBounds(path: path)
         let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
         mapView.moveCamera(cameraUpdate)

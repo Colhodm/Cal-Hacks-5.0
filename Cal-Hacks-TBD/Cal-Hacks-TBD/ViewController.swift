@@ -11,6 +11,7 @@ import Alamofire
 import GooglePlaces
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var signUpBox: UIButton!
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
     var userid = ""
@@ -78,6 +79,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         {
             vc.userid = userid
             vc.logIn = logIn
+        }
+        if let vc = segue.destination as? SignUp
+        {
+            signUpBox.isHidden = true
         }
     }
     
