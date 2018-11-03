@@ -15,7 +15,7 @@ import Alamofire
 class MapViewController: UIViewController  {
     var currentLocation: CLLocation?
     var userid = ""
-    var zoomLevel: Float = 15.0
+    var zoomLevel: Float = 10.0
     var timer = Timer()
     var logIn = false
     
@@ -44,6 +44,13 @@ class MapViewController: UIViewController  {
         }
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let vc = segue.destination as? contractsConfirm
+        {
+            vc.userID = userid
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -54,10 +61,7 @@ class MapViewController: UIViewController  {
         mapView.delegate = self
         locationManager.delegate = self
         let position = CLLocationCoordinate2D(latitude: 37.8716,longitude: -122.2727)
-        let marker = GMSMarker(position: position)
-        marker.title = "Random"
-        marker.map = mapView
-        //Create a path
+        
         let path = GMSMutablePath()
         
         //for each point you need, add it to your path
@@ -68,47 +72,23 @@ class MapViewController: UIViewController  {
         }
         //Update your mapView with path
         let mapBounds = GMSCoordinateBounds(path: path)
-        print(mapBounds)
         let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
-        print(cameraUpdate)
         mapView.moveCamera(cameraUpdate)
-        locationManager.startUpdatingLocation()        
+        locationManager.startUpdatingLocation()
+        makeGetRequest()
+        mapView.isHidden = true
     }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
-        print("RUNNING")
     }
-
-    
-    // this function makes the Post request to the backend to write some information
-    func makePostRequest(){
+    func makePostRequest(contractID: String){
         
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/create_account")!)
+        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/accept_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["name":"poop", "password": "tits","screenid":"poops","rating":"5"] as Dictionary<String, String>
-
-
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-            
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        Alamofire.request(request).responseJSON { (response) in
-        print(response)
-        }
-        
-    }
-    func makeUserPostRequest(){
-        
-        //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_user_info")!)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["name":"poop", "password": "tits","screenid":"poops","rating":"5"] as Dictionary<String, String>
+        let parameters = ["contractID":contractID, "userID":userid] as Dictionary<String, String>
         
         
         do {
@@ -122,23 +102,30 @@ class MapViewController: UIViewController  {
         }
         
     }
+    
+    
+    
+    
 
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     
     // this function makes the get request to the backend to write some information
     @objc func makeGetRequest(){
             //create the url with URL
-        print("RUUNNING")
             var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_contracts_spatial")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let myCoords = (locationManager.location?.coordinate)!
         let quickone = "(" + myCoords.latitude.description
         let tempone = quickone
-            + "," + myCoords.latitude.description
+            + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
-        print(sourcefinal)
-        let parameters = ["location":"temp", "radius": "5"] as Dictionary<String, String>
+        let parameters = ["location":sourcefinal, "radius": "1"] as Dictionary<String, String>
         
         
         do {
@@ -147,24 +134,32 @@ class MapViewController: UIViewController  {
         } catch let error {
             print(error.localizedDescription)
         }
-            print("EVEN GETTING HERE")
             Alamofire.request(request).responseJSON { (response) in
-                var temp = response.value!
-                print(temp)
-                self.renderData(responseData: response.description)
+                let temp = response.value! as? [Any]
+                self.renderData(responseData: temp!)
                 
             }
         }
     
-    func renderData(responseData: String){
+    func renderData(responseData: [Any]){
         // do some parsing to get the individual coordinates
         // assuming we create some list:
         // we're basically going to iterate through list and add them all to a path
         let path = GMSMutablePath()
         // latitude: 37.8716,longitude: -122.2727
-        let names = [(37.9716,-122.2727), (37.6716,-122.2727), (37.7716,-122.2727)]
-        for name in names {
-            path.add(CLLocationCoordinate2D(latitude: CLLocationDegrees(name.0), longitude: CLLocationDegrees(name.1)))
+        for name in responseData {
+            let myCurrent = name as? Dictionary<String,Any>
+            let start_location = myCurrent!["startLocation"] as? [Double]
+            let end_location = myCurrent!["endlocation"] as? [Double]
+            let contract_id = myCurrent!["_id"] as? Dictionary<String,Any>
+            let validity = myCurrent!["valid"]
+            let price = myCurrent!["price"]
+            let position = CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1]))
+            let marker = GMSMarker(position: position)
+            marker.title = "lops"
+            marker.snippet = contract_id!["$oid"] as? String
+            marker.map = mapView
+            path.add(CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1])))
         }
         if locationManager.location != nil{
             path.add((locationManager.location?.coordinate)!)
@@ -184,7 +179,6 @@ class MapViewController: UIViewController  {
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didFailWithError error: Error){
-        print("I FAILED")
         print(error)
         return
     }
@@ -210,9 +204,7 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print("I TAPPED MARKER")
-        makePostRequest()
-        print("I FINISHED POSTING SHIT")
+        makePostRequest(contractID: (marker.snippet)!)
         return false
     }
     

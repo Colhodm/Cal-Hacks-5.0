@@ -33,7 +33,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
    
     @IBAction func sendContractReq(_ sender: Any) {
-        print("RUNNING THIS FUNCTION")
         sendSubmitRequest()
     }
     func sendSubmitRequest(){
@@ -41,25 +40,23 @@ class LoginController: UIViewController, UITextFieldDelegate {
             var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_contract_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        print("HERE")
-        //if !destination.endEditing(false){
-         //   print("EXITING HERE")
-          //  return
-       // }
-        //let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
-       // let temp = quick
-        //    + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
-        //let final =    temp +  ")"
+        if !destination.endEditing(false){
+            print("EXITING HERE")
+            return
+        }
+        // TODO FIX
+       // let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
+      //  let temp = quick
+     //       + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
+       // let final =    temp +  ")"
         
         let myCoords = (locationManager.location?.coordinate)!
         let quickone = "(" + myCoords.latitude.description
         let tempone = quickone
-            + "," + myCoords.latitude.description
+            + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
-        print("XXXXXX")
-        print(sourcefinal)
-        print("XXXXXX")
-        let parameters = ["destination":"(20,10)", "price": price.text,"userid":userid,"source":sourcefinal,"description":descriptionOfQuery.text!] as! Dictionary<String, Any>
+        let final = "(68.77,-122.24)"
+        let parameters = ["destination":final, "price": price.text!,"userid":userid,"source":sourcefinal,"description":descriptionOfQuery.text!] as! Dictionary<String, String>
         
         
         do {
@@ -69,7 +66,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
             print(error.localizedDescription)
         }
             Alamofire.request(request).responseJSON { (response) in
-                print(response)
                 if response.description == "You were right!"{
                     //self.userid = Int(response.description)!
                     self.performSegue(withIdentifier: "victory", sender: self)
@@ -92,6 +88,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
         destination.addTarget(self, action: #selector(searchRecords(textField:)), for: .editingChanged)
 
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     @objc func searchRecords(textField:UITextField){
         if destination.text!.count >= 4 {
@@ -159,13 +159,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
            
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+
 }
 
 extension LoginController: CLLocationManagerDelegate {

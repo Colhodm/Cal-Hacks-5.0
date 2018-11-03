@@ -11,6 +11,7 @@ import Alamofire
 import GooglePlaces
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var signUpBox: UIButton!
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
     var userid = ""
@@ -19,11 +20,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var secondBox: UITextField!
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("RUNNING?")
         textField.resignFirstResponder()
         return true
     }
     
+    @IBAction func goToContracts(_ sender: Any) {
+        self.performSegue(withIdentifier: "tempContractList", sender: self)
+    }
     @IBAction func segToContract(_ sender: Any) {
            self.performSegue(withIdentifier: "createContract", sender: self)
     }
@@ -51,7 +54,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
             Alamofire.request(request).responseJSON { (response) in
                 let parameters = response.value! as? Dictionary<String, String>
-                print("------------")
                 if (parameters!["id"] != "-1"){
                     self.userid = parameters!["id"]!
                     self.logIn = true
@@ -78,6 +80,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         {
             vc.userid = userid
             vc.logIn = logIn
+        }
+        if let vc = segue.destination as? SignUp
+        {
+            signUpBox.isHidden = true
+        }
+        if let vc = segue.destination as? LoginController
+        {
+            vc.userid = userid
+        }
+        if let vc = segue.destination as? contractsConfirm
+        {
+            vc.userID = userid
         }
     }
     

@@ -19,7 +19,6 @@ class SignUp: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var screenid: UITextField!
     @IBOutlet weak var password: UITextField!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("RUNNING?")
         textField.resignFirstResponder()
         return true
     }
@@ -33,12 +32,9 @@ class SignUp: UIViewController, UITextFieldDelegate {
             var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_user_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            print("YYYYYYYYY")
             let name = self.name.text
         let password = self.password.text
         let screenid = self.screenid.text
-            print(name)
-            print("YYYYYYYYY")
 
         let parameters = ["name":name!, "password": password!,"screenid": screenid] as! Dictionary<String, String>
         
@@ -50,9 +46,6 @@ class SignUp: UIViewController, UITextFieldDelegate {
             print(error.localizedDescription)
         }
             Alamofire.request(request).responseJSON { (response) in
-                print("AM I RUNNING")
-                print(response)
-                print("------------")
                 if response.description == "You were right!"{
                     // NEED TO FIX
                     //self.userid = Int(response.description)!
