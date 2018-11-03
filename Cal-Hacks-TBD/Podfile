@@ -3,7 +3,10 @@
   pod 'GooglePlacePicker'
   pod 'Google-Mobile-Ads-SDK'
   pod 'GoogleMaps'
-  pod 'AWSAPIGateway', '~> 2.4.7'
+  pod 'Stripe'
+  pod 'Alamofire', '~> 4.7'
+  use_frameworks!
+
    inherit! :search_paths    
    target 'Cal-Hacks-TBDTests' do
      inherit! :search_paths

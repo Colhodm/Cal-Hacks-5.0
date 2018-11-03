@@ -10,11 +10,15 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import Alamofire
 
 class MapViewController: UIViewController  {
     var currentLocation: CLLocation?
+    var userid = ""
     var zoomLevel: Float = 15.0
     var timer = Timer()
+    var logIn = false
+    
 
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -44,7 +48,6 @@ class MapViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("IN HERE")
         // Think about how to fix map stuff like being able to zoom in
         scheduledTimerWithTimeInterval()
         locationManager.requestWhenInUseAuthorization()
@@ -59,9 +62,6 @@ class MapViewController: UIViewController  {
         
         //for each point you need, add it to your path
         path.add(position)
-        print(locationManager.location)
-        print("RANDOM")
-        print(position)
         if locationManager.location != nil{
             path.add((locationManager.location?.coordinate)!)
             mapView?.isMyLocationEnabled = true
@@ -76,65 +76,85 @@ class MapViewController: UIViewController  {
     }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
+        print("RUNNING")
     }
 
     
     // this function makes the Post request to the backend to write some information
     func makePostRequest(){
-        let url = URL(string: "http://54.193.17.183:5000/api/get_messages")!
-        var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        let postString = "id=13&name=Jack"
-        print("JUST BEFORE I MADE REQUEST")
-        request.httpBody = postString.data(using: .utf8)
-        print("MADE SOME REQUEST")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-            print("WITHIN A WEIRD BLOCK")
-        }
-        print(task)
-        print("RETURNED")
+        
+        //create the url with URL
+        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/create_account")!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters = ["name":"poop", "password": "tits","screenid":"poops","rating":"5"] as Dictionary<String, String>
 
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        Alamofire.request(request).responseJSON { (response) in
+        print(response)
+        }
+        
     }
+    func makeUserPostRequest(){
+        
+        //create the url with URL
+        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_user_info")!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters = ["name":"poop", "password": "tits","screenid":"poops","rating":"5"] as Dictionary<String, String>
+        
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        Alamofire.request(request).responseJSON { (response) in
+            print(response)
+        }
+        
+    }
+
     
     
     // this function makes the get request to the backend to write some information
     @objc func makeGetRequest(){
-        let url = URL(string: "http://")!
-        var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
-        let postString = "id=13&name=Jack"
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
-                return
-            }
+            //create the url with URL
+        print("RUUNNING")
+            var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_contracts_spatial")!)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let myCoords = (locationManager.location?.coordinate)!
+        let quickone = "(" + myCoords.latitude.description
+        let tempone = quickone
+            + "," + myCoords.latitude.description
+        let sourcefinal =    tempone +  ")"
+        print(sourcefinal)
+        let parameters = ["location":"temp", "radius": "5"] as Dictionary<String, String>
+        
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
             
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-            self.renderData(responseData: responseString!)
+        } catch let error {
+            print(error.localizedDescription)
         }
-    }
+            print("EVEN GETTING HERE")
+            Alamofire.request(request).responseJSON { (response) in
+                var temp = response.value!
+                print(temp)
+                self.renderData(responseData: response.description)
+                
+            }
+        }
     
     func renderData(responseData: String){
         // do some parsing to get the individual coordinates
@@ -142,7 +162,7 @@ class MapViewController: UIViewController  {
         // we're basically going to iterate through list and add them all to a path
         let path = GMSMutablePath()
         // latitude: 37.8716,longitude: -122.2727
-        let names = [(12,13), (14,15), (16,17)]
+        let names = [(37.9716,-122.2727), (37.6716,-122.2727), (37.7716,-122.2727)]
         for name in names {
             path.add(CLLocationCoordinate2D(latitude: CLLocationDegrees(name.0), longitude: CLLocationDegrees(name.1)))
         }

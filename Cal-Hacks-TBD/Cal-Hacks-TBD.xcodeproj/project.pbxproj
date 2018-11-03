@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		034065B7F742DB888EA95DB1 /* libPods-Cal-Hacks-TBD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */; };
+		18A8B42E468E357A1C021F11 /* Pods_Cal_Hacks_TBDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDD54506DCE2F3A449E8421 /* Pods_Cal_Hacks_TBDUITests.framework */; };
+		2505241A88BF9E37BCF7FEA6 /* Pods_Cal_Hacks_TBD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B94983741AF1FAAC2BA962 /* Pods_Cal_Hacks_TBD.framework */; };
 		89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CE0218D3CC700861141 /* AppDelegate.swift */; };
 		89917CE3218D3CC700861141 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CE2218D3CC700861141 /* ViewController.swift */; };
 		89917CE6218D3CC700861141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89917CE4218D3CC700861141 /* Main.storyboard */; };
@@ -16,8 +17,8 @@
 		89917CF6218D3CC900861141 /* Cal_Hacks_TBDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CF5218D3CC900861141 /* Cal_Hacks_TBDTests.swift */; };
 		89917D01218D3CC900861141 /* Cal_Hacks_TBDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */; };
 		89917D0F218D3F6000861141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D0E218D3F6000861141 /* MapViewController.swift */; };
-		BF965B1AC0DE466529F9AB5A /* libPods-Cal-Hacks-TBDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A859825716A2636E7D2DD920 /* libPods-Cal-Hacks-TBDTests.a */; };
-		DF7E1D4B1E2CF6B06842E064 /* libPods-Cal-Hacks-TBDUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEC57D62B32A6F6325C07E3 /* libPods-Cal-Hacks-TBDUITests.a */; };
+		89C14E55218D914A00E56899 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C14E54218D914A00E56899 /* api.swift */; };
+		DD45F5BC15F21DC37234E286 /* Pods_Cal_Hacks_TBDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD5C3CBE6772849BA0A5A4E /* Pods_Cal_Hacks_TBDTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		101992B751A676490535F095 /* Pods-Cal-Hacks-TBD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.release.xcconfig"; sourceTree = "<group>"; };
+		11B94983741AF1FAAC2BA962 /* Pods_Cal_Hacks_TBD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cal_Hacks_TBD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2051F5DCDC2C6537CF5EB28A /* Pods-Cal-Hacks-TBDTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDTests/Pods-Cal-Hacks-TBDTests.debug.xcconfig"; sourceTree = "<group>"; };
 		278A200F437F689B9D8673A3 /* Pods-Cal-Hacks-TBDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,9 +59,9 @@
 		89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_Hacks_TBDUITests.swift; sourceTree = "<group>"; };
 		89917D02218D3CC900861141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89917D0E218D3F6000861141 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		9DEC57D62B32A6F6325C07E3 /* libPods-Cal-Hacks-TBDUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBDUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A859825716A2636E7D2DD920 /* libPods-Cal-Hacks-TBDTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBDTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89C14E54218D914A00E56899 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
+		ACDD54506DCE2F3A449E8421 /* Pods_Cal_Hacks_TBDUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cal_Hacks_TBDUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD5C3CBE6772849BA0A5A4E /* Pods_Cal_Hacks_TBDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cal_Hacks_TBDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF07E1E37DA08C86FFD9E586 /* Pods-Cal-Hacks-TBDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDTests/Pods-Cal-Hacks-TBDTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				034065B7F742DB888EA95DB1 /* libPods-Cal-Hacks-TBD.a in Frameworks */,
+				2505241A88BF9E37BCF7FEA6 /* Pods_Cal_Hacks_TBD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF965B1AC0DE466529F9AB5A /* libPods-Cal-Hacks-TBDTests.a in Frameworks */,
+				DD45F5BC15F21DC37234E286 /* Pods_Cal_Hacks_TBDTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF7E1D4B1E2CF6B06842E064 /* libPods-Cal-Hacks-TBDUITests.a in Frameworks */,
+				18A8B42E468E357A1C021F11 /* Pods_Cal_Hacks_TBDUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,9 +96,9 @@
 		26691896048F6F883E8EBE0A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */,
-				A859825716A2636E7D2DD920 /* libPods-Cal-Hacks-TBDTests.a */,
-				9DEC57D62B32A6F6325C07E3 /* libPods-Cal-Hacks-TBDUITests.a */,
+				11B94983741AF1FAAC2BA962 /* Pods_Cal_Hacks_TBD.framework */,
+				CDD5C3CBE6772849BA0A5A4E /* Pods_Cal_Hacks_TBDTests.framework */,
+				ACDD54506DCE2F3A449E8421 /* Pods_Cal_Hacks_TBDUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,6 +132,7 @@
 				89917CE2218D3CC700861141 /* ViewController.swift */,
 				89917D0E218D3F6000861141 /* MapViewController.swift */,
 				89917CE4218D3CC700861141 /* Main.storyboard */,
+				89C14E54218D914A00E56899 /* api.swift */,
 				89917CE7218D3CC900861141 /* Assets.xcassets */,
 				89917CE9218D3CC900861141 /* LaunchScreen.storyboard */,
 				89917CEC218D3CC900861141 /* Info.plist */,
@@ -180,6 +183,7 @@
 				89917CDA218D3CC700861141 /* Frameworks */,
 				89917CDB218D3CC700861141 /* Resources */,
 				427B33872E2C8379B5601F62 /* [CP] Copy Pods Resources */,
+				584827A6BEC1F45198C0F1BA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,15 +308,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Cal-Hacks-TBDTests-checkManifestLockResult.txt",
 			);
@@ -343,20 +343,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B79D22F2D29D1C6A89DDE3D3 /* [CP] Check Pods Manifest.lock */ = {
+		584827A6BEC1F45198C0F1BA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B79D22F2D29D1C6A89DDE3D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Cal-Hacks-TBDUITests-checkManifestLockResult.txt",
 			);
@@ -392,6 +408,7 @@
 			files = (
 				89917CE3218D3CC700861141 /* ViewController.swift in Sources */,
 				89917D0F218D3F6000861141 /* MapViewController.swift in Sources */,
+				89C14E55218D914A00E56899 /* api.swift in Sources */,
 				89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

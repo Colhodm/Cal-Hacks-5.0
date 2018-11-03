@@ -8,17 +8,21 @@
 
 import UIKit
 import GoogleMaps
-
+import GooglePlaces
+import GoogleMobileAds
+import Stripe
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        GMSPlacesClient.provideAPIKey("AIzaSyAsszS58jyvUp_-Q2HaBofbOIKGdarTMKc");
         GMSServices.provideAPIKey("AIzaSyAsszS58jyvUp_-Q2HaBofbOIKGdarTMKc");
-
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-3940256099942544/2934735716")
+        STPPaymentConfiguration.shared().publishableKey = "pk_live_upAjfzXr2mJp2Yt9amvcLm4L"
+            // do any other necessary launch configuration        
         return true
     }
 
