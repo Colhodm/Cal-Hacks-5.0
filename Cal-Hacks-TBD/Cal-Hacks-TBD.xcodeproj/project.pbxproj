@@ -1,0 +1,664 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		034065B7F742DB888EA95DB1 /* libPods-Cal-Hacks-TBD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */; };
+		89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CE0218D3CC700861141 /* AppDelegate.swift */; };
+		89917CE3218D3CC700861141 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CE2218D3CC700861141 /* ViewController.swift */; };
+		89917CE6218D3CC700861141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89917CE4218D3CC700861141 /* Main.storyboard */; };
+		89917CE8218D3CC900861141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89917CE7218D3CC900861141 /* Assets.xcassets */; };
+		89917CEB218D3CC900861141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89917CE9218D3CC900861141 /* LaunchScreen.storyboard */; };
+		89917CF6218D3CC900861141 /* Cal_Hacks_TBDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CF5218D3CC900861141 /* Cal_Hacks_TBDTests.swift */; };
+		89917D01218D3CC900861141 /* Cal_Hacks_TBDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */; };
+		89917D0F218D3F6000861141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D0E218D3F6000861141 /* MapViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		89917CF2218D3CC900861141 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89917CD5218D3CC700861141 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89917CDC218D3CC700861141;
+			remoteInfo = "Cal-Hacks-TBD";
+		};
+		89917CFD218D3CC900861141 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89917CD5218D3CC700861141 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89917CDC218D3CC700861141;
+			remoteInfo = "Cal-Hacks-TBD";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		101992B751A676490535F095 /* Pods-Cal-Hacks-TBD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.release.xcconfig"; sourceTree = "<group>"; };
+		3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.debug.xcconfig"; sourceTree = "<group>"; };
+		89917CDD218D3CC700861141 /* Cal-Hacks-TBD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cal-Hacks-TBD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89917CE0218D3CC700861141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		89917CE2218D3CC700861141 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		89917CE5218D3CC700861141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		89917CE7218D3CC900861141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		89917CEA218D3CC900861141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89917CEC218D3CC900861141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89917CF1218D3CC900861141 /* Cal-Hacks-TBDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cal-Hacks-TBDTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89917CF5218D3CC900861141 /* Cal_Hacks_TBDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_Hacks_TBDTests.swift; sourceTree = "<group>"; };
+		89917CF7218D3CC900861141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89917CFC218D3CC900861141 /* Cal-Hacks-TBDUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cal-Hacks-TBDUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_Hacks_TBDUITests.swift; sourceTree = "<group>"; };
+		89917D02218D3CC900861141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89917D0E218D3F6000861141 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cal-Hacks-TBD.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		89917CDA218D3CC700861141 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				034065B7F742DB888EA95DB1 /* libPods-Cal-Hacks-TBD.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89917CEE218D3CC900861141 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89917CF9218D3CC900861141 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26691896048F6F883E8EBE0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1719F5382AEA678935137E6 /* libPods-Cal-Hacks-TBD.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89917CD4218D3CC700861141 = {
+			isa = PBXGroup;
+			children = (
+				89917CDF218D3CC700861141 /* Cal-Hacks-TBD */,
+				89917CF4218D3CC900861141 /* Cal-Hacks-TBDTests */,
+				89917CFF218D3CC900861141 /* Cal-Hacks-TBDUITests */,
+				89917CDE218D3CC700861141 /* Products */,
+				D8581A19ED2B9FE0798C9326 /* Pods */,
+				26691896048F6F883E8EBE0A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		89917CDE218D3CC700861141 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				89917CDD218D3CC700861141 /* Cal-Hacks-TBD.app */,
+				89917CF1218D3CC900861141 /* Cal-Hacks-TBDTests.xctest */,
+				89917CFC218D3CC900861141 /* Cal-Hacks-TBDUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		89917CDF218D3CC700861141 /* Cal-Hacks-TBD */ = {
+			isa = PBXGroup;
+			children = (
+				89917CE0218D3CC700861141 /* AppDelegate.swift */,
+				89917CE2218D3CC700861141 /* ViewController.swift */,
+				89917D0E218D3F6000861141 /* MapViewController.swift */,
+				89917CE4218D3CC700861141 /* Main.storyboard */,
+				89917CE7218D3CC900861141 /* Assets.xcassets */,
+				89917CE9218D3CC900861141 /* LaunchScreen.storyboard */,
+				89917CEC218D3CC900861141 /* Info.plist */,
+			);
+			path = "Cal-Hacks-TBD";
+			sourceTree = "<group>";
+		};
+		89917CF4218D3CC900861141 /* Cal-Hacks-TBDTests */ = {
+			isa = PBXGroup;
+			children = (
+				89917CF5218D3CC900861141 /* Cal_Hacks_TBDTests.swift */,
+				89917CF7218D3CC900861141 /* Info.plist */,
+			);
+			path = "Cal-Hacks-TBDTests";
+			sourceTree = "<group>";
+		};
+		89917CFF218D3CC900861141 /* Cal-Hacks-TBDUITests */ = {
+			isa = PBXGroup;
+			children = (
+				89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */,
+				89917D02218D3CC900861141 /* Info.plist */,
+			);
+			path = "Cal-Hacks-TBDUITests";
+			sourceTree = "<group>";
+		};
+		D8581A19ED2B9FE0798C9326 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */,
+				101992B751A676490535F095 /* Pods-Cal-Hacks-TBD.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		89917CDC218D3CC700861141 /* Cal-Hacks-TBD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89917D05218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBD" */;
+			buildPhases = (
+				F6D98642D73E0294CD8ABC2D /* [CP] Check Pods Manifest.lock */,
+				89917CD9218D3CC700861141 /* Sources */,
+				89917CDA218D3CC700861141 /* Frameworks */,
+				89917CDB218D3CC700861141 /* Resources */,
+				427B33872E2C8379B5601F62 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cal-Hacks-TBD";
+			productName = "Cal-Hacks-TBD";
+			productReference = 89917CDD218D3CC700861141 /* Cal-Hacks-TBD.app */;
+			productType = "com.apple.product-type.application";
+		};
+		89917CF0218D3CC900861141 /* Cal-Hacks-TBDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89917D08218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBDTests" */;
+			buildPhases = (
+				89917CED218D3CC900861141 /* Sources */,
+				89917CEE218D3CC900861141 /* Frameworks */,
+				89917CEF218D3CC900861141 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				89917CF3218D3CC900861141 /* PBXTargetDependency */,
+			);
+			name = "Cal-Hacks-TBDTests";
+			productName = "Cal-Hacks-TBDTests";
+			productReference = 89917CF1218D3CC900861141 /* Cal-Hacks-TBDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		89917CFB218D3CC900861141 /* Cal-Hacks-TBDUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89917D0B218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBDUITests" */;
+			buildPhases = (
+				89917CF8218D3CC900861141 /* Sources */,
+				89917CF9218D3CC900861141 /* Frameworks */,
+				89917CFA218D3CC900861141 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				89917CFE218D3CC900861141 /* PBXTargetDependency */,
+			);
+			name = "Cal-Hacks-TBDUITests";
+			productName = "Cal-Hacks-TBDUITests";
+			productReference = 89917CFC218D3CC900861141 /* Cal-Hacks-TBDUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		89917CD5218D3CC700861141 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Cal-Hacks-5.0";
+				TargetAttributes = {
+					89917CDC218D3CC700861141 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					89917CF0218D3CC900861141 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 89917CDC218D3CC700861141;
+					};
+					89917CFB218D3CC900861141 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 89917CDC218D3CC700861141;
+					};
+				};
+			};
+			buildConfigurationList = 89917CD8218D3CC700861141 /* Build configuration list for PBXProject "Cal-Hacks-TBD" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 89917CD4218D3CC700861141;
+			productRefGroup = 89917CDE218D3CC700861141 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89917CDC218D3CC700861141 /* Cal-Hacks-TBD */,
+				89917CF0218D3CC900861141 /* Cal-Hacks-TBDTests */,
+				89917CFB218D3CC900861141 /* Cal-Hacks-TBDUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		89917CDB218D3CC700861141 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89917CEB218D3CC900861141 /* LaunchScreen.storyboard in Resources */,
+				89917CE8218D3CC900861141 /* Assets.xcassets in Resources */,
+				89917CE6218D3CC700861141 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89917CEF218D3CC900861141 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89917CFA218D3CC900861141 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		427B33872E2C8379B5601F62 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6D98642D73E0294CD8ABC2D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cal-Hacks-TBD-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89917CD9218D3CC700861141 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89917CE3218D3CC700861141 /* ViewController.swift in Sources */,
+				89917D0F218D3F6000861141 /* MapViewController.swift in Sources */,
+				89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89917CED218D3CC900861141 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89917CF6218D3CC900861141 /* Cal_Hacks_TBDTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89917CF8218D3CC900861141 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89917D01218D3CC900861141 /* Cal_Hacks_TBDUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		89917CF3218D3CC900861141 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89917CDC218D3CC700861141 /* Cal-Hacks-TBD */;
+			targetProxy = 89917CF2218D3CC900861141 /* PBXContainerItemProxy */;
+		};
+		89917CFE218D3CC900861141 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89917CDC218D3CC700861141 /* Cal-Hacks-TBD */;
+			targetProxy = 89917CFD218D3CC900861141 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		89917CE4218D3CC700861141 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89917CE5218D3CC700861141 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		89917CE9218D3CC900861141 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89917CEA218D3CC900861141 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		89917D03218D3CC900861141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		89917D04218D3CC900861141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		89917D06218D3CC900861141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y8ATGR3J2;
+				INFOPLIST_FILE = "Cal-Hacks-TBD/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-Colhodm-Cal-Hacks-5.0.Cal-Hacks-TBD";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		89917D07218D3CC900861141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 101992B751A676490535F095 /* Pods-Cal-Hacks-TBD.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y8ATGR3J2;
+				INFOPLIST_FILE = "Cal-Hacks-TBD/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-Colhodm-Cal-Hacks-5.0.Cal-Hacks-TBD";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		89917D09218D3CC900861141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y8ATGR3J2;
+				INFOPLIST_FILE = "Cal-Hacks-TBDTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-Colhodm-Cal-Hacks-5.0.Cal-Hacks-TBDTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cal-Hacks-TBD.app/Cal-Hacks-TBD";
+			};
+			name = Debug;
+		};
+		89917D0A218D3CC900861141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y8ATGR3J2;
+				INFOPLIST_FILE = "Cal-Hacks-TBDTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-Colhodm-Cal-Hacks-5.0.Cal-Hacks-TBDTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cal-Hacks-TBD.app/Cal-Hacks-TBD";
+			};
+			name = Release;
+		};
+		89917D0C218D3CC900861141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y8ATGR3J2;
+				INFOPLIST_FILE = "Cal-Hacks-TBDUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-Colhodm-Cal-Hacks-5.0.Cal-Hacks-TBDUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Cal-Hacks-TBD";
+			};
+			name = Debug;
+		};
+		89917D0D218D3CC900861141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y8ATGR3J2;
+				INFOPLIST_FILE = "Cal-Hacks-TBDUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-Colhodm-Cal-Hacks-5.0.Cal-Hacks-TBDUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Cal-Hacks-TBD";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		89917CD8218D3CC700861141 /* Build configuration list for PBXProject "Cal-Hacks-TBD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89917D03218D3CC900861141 /* Debug */,
+				89917D04218D3CC900861141 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89917D05218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89917D06218D3CC900861141 /* Debug */,
+				89917D07218D3CC900861141 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89917D08218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89917D09218D3CC900861141 /* Debug */,
+				89917D0A218D3CC900861141 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89917D0B218D3CC900861141 /* Build configuration list for PBXNativeTarget "Cal-Hacks-TBDUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89917D0C218D3CC900861141 /* Debug */,
+				89917D0D218D3CC900861141 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 89917CD5218D3CC700861141 /* Project object */;
+}

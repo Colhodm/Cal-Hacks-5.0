@@ -1,0 +1,35 @@
+PODS:
+  - Google-Mobile-Ads-SDK (7.35.1)
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
+    - GoogleMaps/Base
+  - GooglePlacePicker (2.7.0):
+    - GoogleMaps (= 2.7.0)
+    - GooglePlaces (= 2.7.0)
+  - GooglePlaces (2.7.0):
+    - GoogleMaps/Base (= 2.7.0)
+
+DEPENDENCIES:
+  - Google-Mobile-Ads-SDK
+  - GoogleMaps
+  - GooglePlacePicker
+  - GooglePlaces
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Google-Mobile-Ads-SDK
+    - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
+
+SPEC CHECKSUMS:
+  Google-Mobile-Ads-SDK: 151d5e87b4a0ae6d7d07e2cd8d55d1b41ea2e61e
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
+  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+
+PODFILE CHECKSUM: 9f9bcbb7ff6bd893dfa7f7e3c69f2566324b2522
+
+COCOAPODS: 1.5.3
