@@ -29,7 +29,7 @@ def createContract(ownerID, sLat, sLong, eLat, eLon, price, title, description):
 	return str(result);
 
 def createUser(name, password,  userID, rating):
-	found = users.find({userID}).count()
+	found = users.find({"username" :userID}).count()
 	if found: 
 		return -1
 
@@ -78,7 +78,7 @@ def validLogin(username, password):
 
 
 def getContractSpatial(lat, lon, radius) :
-	query = contracts.find({"loc": {"$within": {"$center": [[lat, lon], radius]}}})
+	query = contracts.find({"startLocation": {"$within": {"$center": [[lat, lon], radius]}}})
 	return query
 
 
