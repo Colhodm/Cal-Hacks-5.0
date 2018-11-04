@@ -22,14 +22,17 @@ class contractsStatus: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeGetRequest()
+        print("XXX")
+        print(contractID)
+        print("XXX")
         // Do any additional setup after loading the view, typically from a nib.
     }
     @objc func makeGetRequest(){
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_owner_contract")!)
+        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/complete_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["userID": userID] as Dictionary<String, String>
+        let parameters = ["userID": userID,"contractID":contractID] as Dictionary<String, String>
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -38,7 +41,21 @@ class contractsStatus: UIViewController {
             print(error.localizedDescription)
         }
         Alamofire.request(request).responseJSON { (response) in
-            print(response)
+            let temp = response.value! as? Dictionary<String,Any>
+            if temp == nil{
+                return
+            }
+            let anothertemp = temp!["success"] as? Int
+            if anothertemp == 0{
+                print("oops waiting on the other person")
+            }
+            else if (anothertemp == 1){
+                print("WOO we're done!")
+            }
+            else{
+                print("Uh oh this did not seem to work")
+            }
+            print(anothertemp)
         }
     }
     

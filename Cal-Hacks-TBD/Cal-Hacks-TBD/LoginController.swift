@@ -22,8 +22,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
     var finalDest = ""
     var logIn = false
 
+
     
     
+    @IBOutlet weak var myTitle: UITextField!
     @IBOutlet weak var descriptionOfQuery: UITextField!
     @IBOutlet weak var myOptions: UITableView!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -32,31 +34,30 @@ class LoginController: UIViewController, UITextFieldDelegate {
     }
     
    
-    @IBAction func sendContractReq(_ sender: Any) {
+    @IBAction func sendReq(_ sender: Any) {
         sendSubmitRequest()
     }
+    
     func sendSubmitRequest(){
             //create the url with URL
             var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_contract_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if !destination.endEditing(false){
-            print("EXITING HERE")
-            return
-        }
-        // TODO FIX
-       // let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
-      //  let temp = quick
-     //       + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
-       // let final =    temp +  ")"
+       // if !destination.endEditing(false){
+        //    print("EXITING HERE")
+         //   return
+        //}
+        let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
+        let temp = quick
+            + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
+        let final =    temp +  ")"
         
         let myCoords = (locationManager.location?.coordinate)!
         let quickone = "(" + myCoords.latitude.description
         let tempone = quickone
             + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
-        let final = "(68.77,-122.24)"
-        let parameters = ["destination":final, "price": price.text!,"userid":userid,"source":sourcefinal,"description":descriptionOfQuery.text!] as! Dictionary<String, String>
+        let parameters = ["destination":final, "price": price.text!,"userid":userid,"source":sourcefinal,"description":descriptionOfQuery.text!,"title":myTitle.text!] as! Dictionary<String, String>
         
         
         do {
@@ -183,7 +184,7 @@ extension LoginController: UITableViewDelegate,UITableViewDataSource {
         cell?.textLabel?.text = myArray[indexPath.row]
         return cell!
     }
-    
+  
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
         

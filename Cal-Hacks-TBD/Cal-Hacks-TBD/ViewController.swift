@@ -11,12 +11,12 @@ import Alamofire
 import GooglePlaces
 class ViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var signUpBox: UIButton!
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
     var userid = ""
     var logIn = false
 
+    @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var secondBox: UITextField!
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -30,11 +30,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func segToContract(_ sender: Any) {
            self.performSegue(withIdentifier: "createContract", sender: self)
     }
-    
     @IBAction func login(_ sender: Any) {
         if ((firstBox.text?.count)! > 1 && (secondBox.text?.count)! > 2){
             sendLoginRequest()
-        }
+    }
+    
+   
+    
     }
     func sendLoginRequest(){
             //create the url with URL
@@ -53,7 +55,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print(error.localizedDescription)
         }
             Alamofire.request(request).responseJSON { (response) in
+                if response.value == nil{
+                    return
+                }
                 let parameters = response.value! as? Dictionary<String, String>
+                if parameters == nil{
+                    return 
+                }
                 if (parameters!["id"] != "-1"){
                     self.userid = parameters!["id"]!
                     self.logIn = true
@@ -68,7 +76,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         firstBox.delegate = self
         secondBox.delegate = self
         self.locationManager.delegate = self
-
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         
@@ -83,7 +90,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         if let vc = segue.destination as? SignUp
         {
-            signUpBox.isHidden = true
+            //signUpBox.isHidden = true
         }
         if let vc = segue.destination as? LoginController
         {

@@ -22,10 +22,12 @@ class SignUp: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-    @IBAction func signUp(_ sender: Any) {
+    @IBAction func sendSign(_ sender: Any) {
         sendSignUpRequest()
+        print("DID IT")
     }
+    
+    
     
     func sendSignUpRequest(){
             //create the url with URL

@@ -17,7 +17,13 @@
 		89917CF6218D3CC900861141 /* Cal_Hacks_TBDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917CF5218D3CC900861141 /* Cal_Hacks_TBDTests.swift */; };
 		89917D01218D3CC900861141 /* Cal_Hacks_TBDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */; };
 		89917D0F218D3F6000861141 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89917D0E218D3F6000861141 /* MapViewController.swift */; };
+		89ADD1F9218F20B000598202 /* 45294695_497045064132053_268298893219856384_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 89ADD1F8218F20AF00598202 /* 45294695_497045064132053_268298893219856384_n.png */; };
+		89ADD1FB218F212D00598202 /* logo transparent background.png in Resources */ = {isa = PBXBuildFile; fileRef = 89ADD1FA218F212D00598202 /* logo transparent background.png */; };
+		89BCC286218E2ADD0078FFFD /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC285218E2ADD0078FFFD /* SignUp.swift */; };
+		89BCC290218E7ABA0078FFFD /* contractsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */; };
+		89BCC294218E997B0078FFFD /* contractsConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC293218E997B0078FFFD /* contractsConfirm.swift */; };
 		89C14E55218D914A00E56899 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C14E54218D914A00E56899 /* api.swift */; };
+		89C91047218DFDB2004EC778 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C91046218DFDB2004EC778 /* LoginController.swift */; };
 		DD45F5BC15F21DC37234E286 /* Pods_Cal_Hacks_TBDTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD5C3CBE6772849BA0A5A4E /* Pods_Cal_Hacks_TBDTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +65,13 @@
 		89917D00218D3CC900861141 /* Cal_Hacks_TBDUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cal_Hacks_TBDUITests.swift; sourceTree = "<group>"; };
 		89917D02218D3CC900861141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89917D0E218D3F6000861141 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		89ADD1F8218F20AF00598202 /* 45294695_497045064132053_268298893219856384_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 45294695_497045064132053_268298893219856384_n.png; sourceTree = "<group>"; };
+		89ADD1FA218F212D00598202 /* logo transparent background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo transparent background.png"; sourceTree = "<group>"; };
+		89BCC285218E2ADD0078FFFD /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contractsStatus.swift; sourceTree = "<group>"; };
+		89BCC293218E997B0078FFFD /* contractsConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contractsConfirm.swift; sourceTree = "<group>"; };
 		89C14E54218D914A00E56899 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
+		89C91046218DFDB2004EC778 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		ACDD54506DCE2F3A449E8421 /* Pods_Cal_Hacks_TBDUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cal_Hacks_TBDUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD5C3CBE6772849BA0A5A4E /* Pods_Cal_Hacks_TBDTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cal_Hacks_TBDTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF07E1E37DA08C86FFD9E586 /* Pods-Cal-Hacks-TBDTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDTests/Pods-Cal-Hacks-TBDTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,10 +140,16 @@
 		89917CDF218D3CC700861141 /* Cal-Hacks-TBD */ = {
 			isa = PBXGroup;
 			children = (
+				89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */,
+				89BCC293218E997B0078FFFD /* contractsConfirm.swift */,
+				89917D0E218D3F6000861141 /* MapViewController.swift */,
 				89917CE0218D3CC700861141 /* AppDelegate.swift */,
 				89917CE2218D3CC700861141 /* ViewController.swift */,
-				89917D0E218D3F6000861141 /* MapViewController.swift */,
+				89ADD1FA218F212D00598202 /* logo transparent background.png */,
+				89ADD1F8218F20AF00598202 /* 45294695_497045064132053_268298893219856384_n.png */,
+				89BCC285218E2ADD0078FFFD /* SignUp.swift */,
 				89917CE4218D3CC700861141 /* Main.storyboard */,
+				89C91046218DFDB2004EC778 /* LoginController.swift */,
 				89C14E54218D914A00E56899 /* api.swift */,
 				89917CE7218D3CC900861141 /* Assets.xcassets */,
 				89917CE9218D3CC900861141 /* LaunchScreen.storyboard */,
@@ -281,6 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				89917CEB218D3CC900861141 /* LaunchScreen.storyboard in Resources */,
+				89ADD1F9218F20B000598202 /* 45294695_497045064132053_268298893219856384_n.png in Resources */,
+				89ADD1FB218F212D00598202 /* logo transparent background.png in Resources */,
 				89917CE8218D3CC900861141 /* Assets.xcassets in Resources */,
 				89917CE6218D3CC700861141 /* Main.storyboard in Resources */,
 			);
@@ -406,10 +426,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89BCC294218E997B0078FFFD /* contractsConfirm.swift in Sources */,
 				89917CE3218D3CC700861141 /* ViewController.swift in Sources */,
+				89BCC286218E2ADD0078FFFD /* SignUp.swift in Sources */,
 				89917D0F218D3F6000861141 /* MapViewController.swift in Sources */,
 				89C14E55218D914A00E56899 /* api.swift in Sources */,
+				89BCC290218E7ABA0078FFFD /* contractsStatus.swift in Sources */,
 				89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */,
+				89C91047218DFDB2004EC778 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

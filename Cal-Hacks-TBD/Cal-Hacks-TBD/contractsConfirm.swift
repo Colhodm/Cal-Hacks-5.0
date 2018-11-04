@@ -3,7 +3,7 @@
 //
 //
 //  Created by ananya mukerjee on 11/3/18.
-//
+//  Copyright © 2018 Cal-Hacks-5.0. All rights reserved.
 
 import UIKit
 import Alamofire
@@ -13,6 +13,8 @@ class contractsConfirm: UITableViewController {
     var userID = ""
     var myTemp = [String]()
     var another = [String]()
+    var myTempBackup = [String]()
+    var anotherBackup = [String]()
 
 
     override func viewDidLoad() {
@@ -22,6 +24,14 @@ class contractsConfirm: UITableViewController {
 
 
         //
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let vc = segue.destination as? contractsStatus
+        {
+            vc.userID = userID
+            vc.contractID = contractID
+        }
     }
    
     @objc func makeGetRequest(){
@@ -39,41 +49,89 @@ class contractsConfirm: UITableViewController {
         }
         Alamofire.request(request).responseJSON { (response) in
             let names = response.value! as? [Any]
+            if names == nil{
+                return
+            }
             for name in names! {
-                )
+                
                 let myCurrent = name as? Dictionary<String,Any>
                 let start_location = myCurrent!["startLocation"] as? [Double]
                 let end_location = myCurrent!["endlocation"] as? [Double]
                 let contract_id = myCurrent!["_id"] as? Dictionary<String,Any>
                 let validity = myCurrent!["valid"]
                 let price = myCurrent!["price"]
-                self.another.append(contract_id!["$oid"] as! String)
-                self.myTemp.append((myCurrent!["description"] as? String)!)
-                let position = CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1]))
+                let temp = validity as! Bool
+                let another = myCurrent!["active"] as! Bool
+                if temp
+                    {
+                    self.another.append(contract_id!["$oid"] as! String)
+                        let title = myCurrent!["title"]
+                    self.anotherBackup.append(title as! String)
+                } else if another {
+                    self.myTemp.append(contract_id!["$oid"] as! String)
+                    let title = myCurrent!["title"]
+                    self.myTempBackup.append(title as! String)
+                }
         }
             self.tableView.reloadData()
     }
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myTemp.count
-    }
-    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
+        Int {
+            switch (section) {
+            case 0:
+                return self.myTemp.count
+            case 1:
+                return self.another.count
+            default:
+                print("WHAT AM I DOING HERE"
+                )
+                return self.myTemp.count
+            }
+        }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let temp = "myArray"
-        var cell = tableView.dequeueReusableCell(withIdentifier: temp)
+        var temp = "myArray"
+        var cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell") as? UITableViewCell
         if cell == nil{
             cell = UITableViewCell(style: .default, reuseIdentifier: temp)
         }
-        // FIX ME INDEX OUT OF RANGE ERROR
-        print("AM I EVEN RUNNING???")
-        cell?.textLabel?.text = myTemp[indexPath.row] + " The description is  " + another[indexPath.row]
+        switch (indexPath.section) {
+        case 0:
+            if (self.myTemp.count > 0){
+            cell?.textLabel?.text = "The Title is  " + myTempBackup[indexPath.row]
+            }
+        case 1:
+            if (self.another.count > 0){
+                cell?.textLabel?.text = "The Title is  " + anotherBackup[indexPath.row]
+            }
+        default:
+            cell?.textLabel?.text = "The id is "   + another[indexPath.row] + " the description is  " + myTemp[indexPath.row]
+        }
         return cell!
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var sections = ["Pending", "Yet to be Assigned"]
+        return sections[section]
+
+    }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("could i be called")
         let indexPath = tableView.indexPathForSelectedRow
         let cell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+        var temp = ""
+        var flag = false
+        if indexPath?.section == 0{
+             temp = another[(indexPath?.row)!]
+        }
+        else{
+            temp = myTemp[(indexPath?.row)!]
+        }
+        contractID = temp
+        self.performSegue(withIdentifier: "finalCellDown", sender: self)
+
     }
     
 
