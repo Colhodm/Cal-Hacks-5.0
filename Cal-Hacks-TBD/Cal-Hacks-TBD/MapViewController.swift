@@ -24,12 +24,16 @@ class MapViewController: UIViewController  {
     var finalDest = ""
 
     
-
+    @IBOutlet weak var searchBar: UITextField!
     
-    @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var myOptions: UITableView!
+    
+    @IBOutlet weak var myStack: UIStackView!
+    
     @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var myOptions: UITableView!
+    
+    
     var locationManager = CLLocationManager()
     var selectedPlace: GooglePlaces.GMSPlace?
     
@@ -65,10 +69,15 @@ class MapViewController: UIViewController  {
         }
     }
     
+    @IBAction func toggleSideBar(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Think about how to fix map stuff like being able to zoom in
+        mapView.addSubview(myStack)
+
         self.locationManager.delegate = self
         self.myOptions.delegate = self
         self.myOptions.dataSource = self
@@ -78,7 +87,7 @@ class MapViewController: UIViewController  {
         scheduledTimerWithTimeInterval()
         locationManager.requestWhenInUseAuthorization()
         mapView.delegate = self
-        searchBar.delegate = self
+        //searchBar.delegate = self
         locationManager.delegate = self
         let path = GMSMutablePath()
         self.placesClient = GMSPlacesClient.shared()
@@ -102,8 +111,11 @@ class MapViewController: UIViewController  {
         mapView.moveCamera(cameraUpdate)
         locationManager.startUpdatingLocation()
         makeGetRequest()
-        
-
+        for gesture in mapView.gestureRecognizers! {
+            mapView.removeGestureRecognizer(gesture)
+        }
+        self.navigationController?.isToolbarHidden = true
+        self.navigationItem.hidesBackButton = true
     }
     @objc func searchRecords(textField:String){
         placeAutocomplete()
@@ -280,22 +292,22 @@ extension MapViewController: CLLocationManagerDelegate {
         print(error)
         return
     }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
-            return
-        }
-        if ((locationManager.location?.coordinate) != nil) {
-        let path = GMSMutablePath()
-        path.add((locationManager.location?.coordinate)!)
-        mapView?.isMyLocationEnabled = true
-        //Update your mapView with path
-        let mapBounds = GMSCoordinateBounds(path: path)
-        let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
-        mapView.moveCamera(cameraUpdate)
-        return
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let location = locations.first else {
+//            return
+//        }
+//        if ((locationManager.location?.coordinate) != nil) {
+//        let path = GMSMutablePath()
+//        path.add((locationManager.location?.coordinate)!)
+//        mapView?.isMyLocationEnabled = true
+//        //Update your mapView with path
+//        let mapBounds = GMSCoordinateBounds(path: path)
+//        let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
+//        mapView.moveCamera(cameraUpdate)
+//        return
+//    }
     
-}
+//}
 }
 
 extension MapViewController: GMSMapViewDelegate{

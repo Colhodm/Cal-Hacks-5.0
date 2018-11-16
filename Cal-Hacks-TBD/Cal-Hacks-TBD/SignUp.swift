@@ -16,6 +16,7 @@ class SignUp: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var name: UITextField!
     
+    @IBOutlet weak var submitBut: UIButton!
     @IBOutlet weak var screenid: UITextField!
     @IBOutlet weak var password: UITextField!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -65,6 +66,9 @@ class SignUp: UIViewController, UITextFieldDelegate {
 
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        self.submitBut.layer.cornerRadius = 10
+        self.submitBut.clipsToBounds = true
+        self.submitBut.titleLabel?.adjustsFontSizeToFitWidth = true
         
         // Do any additional setup after loading the view, typically from a nib.
     }

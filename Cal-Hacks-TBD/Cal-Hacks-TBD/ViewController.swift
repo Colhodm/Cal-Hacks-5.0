@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var secondBox: UITextField!
     
+    @IBOutlet weak var logInBut: UIButton!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -78,6 +79,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        self.logInBut.layer.cornerRadius = 10
+        self.logInBut.clipsToBounds = true
+        self.logInBut.titleLabel?.adjustsFontSizeToFitWidth = true
         
         // Do any additional setup after loading the view, typically from a nib.
     }
