@@ -26,11 +26,12 @@ class MapViewController: UIViewController  {
     
     @IBOutlet weak var searchBar: UITextField!
     
+    @IBOutlet var mapView: GMSMapView!
+    
+    @IBOutlet weak var myView: UIView!
     
     
     @IBOutlet weak var myStack: UIStackView!
-    
-    @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var myOptions: UITableView!
     
     
@@ -73,13 +74,17 @@ class MapViewController: UIViewController  {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Think about how to fix map stuff like being able to zoom in
+        mapView.addSubview(myView)
         mapView.addSubview(myStack)
 
+
+
         self.locationManager.delegate = self
-        self.myOptions.delegate = self
+       self.myOptions.delegate = self
         self.myOptions.dataSource = self
         self.myOptions.isScrollEnabled = true;
         self.myOptions.isHidden = true;
@@ -91,7 +96,7 @@ class MapViewController: UIViewController  {
         locationManager.delegate = self
         let path = GMSMutablePath()
         self.placesClient = GMSPlacesClient.shared()
-
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
 
         let position = CLLocationCoordinate2D(latitude: 37.8716,longitude: -122.2727)
         
@@ -117,6 +122,12 @@ class MapViewController: UIViewController  {
         self.navigationController?.isToolbarHidden = true
         self.navigationItem.hidesBackButton = true
     }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        print("did i even run")
+        return .lightContent
+    }
+    
     @objc func searchRecords(textField:String){
         placeAutocomplete()
         self.myOptions.reloadData()
