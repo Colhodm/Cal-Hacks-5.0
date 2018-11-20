@@ -18,6 +18,14 @@ class SideMenuTableViewController: UIViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationController?.isToolbarHidden = true
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+    }
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        print("did i even run")
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {

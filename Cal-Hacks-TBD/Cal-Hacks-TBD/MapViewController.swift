@@ -25,13 +25,17 @@ class MapViewController: UIViewController  {
 
     @IBOutlet weak var myBottom: UIView!
     
-
+    @IBOutlet weak var deliver: UIButton!
+    
+    @IBOutlet weak var myProfile: UIButton!
     @IBOutlet weak var mySearch: UIView!
     @IBOutlet weak var mapView: GMSMapView!
     
     @IBOutlet weak var mySearchBut: UIButton!
     @IBOutlet weak var myView: UIView!
     
+    @IBOutlet weak var myContractView: UIView!
+    var isMap = true
     
     //@IBOutlet weak var myStack: UIStackView!
    // @IBOutlet weak var myOptions: UITableView!
@@ -72,8 +76,42 @@ class MapViewController: UIViewController  {
         }
     }
     
+    @IBAction func myContractList(_ sender: Any) {
+        if isMap{
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+            self.mapView.alpha = 0 // Here you will get the animation you want
+            self.myContractView.alpha = 1
+        }, completion: { _ in
+            self.mapView.isHidden = true // Here you hide it when animation done
+            self.myContractView.isHidden = false
+        })
+            if let temp = sender as? UIButton{
+                temp.setTitle("Map", for: [])
+            }
+            isMap = false
+        } else {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+            self.mapView.alpha = 1 // Here you will get the animation you want
+            self.myContractView.alpha = 0
+        }, completion: { _ in
+            self.mapView.isHidden = false // Here you hide it when animation done
+            self.myContractView.isHidden = true
+            if let temp = sender as? UIButton{
+                temp.setTitle("List", for: []
+                )
+            }
+            self.isMap = true
+        })
+        }
+    }
+    
+    
     @IBAction func toggleSideBar(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
+        if let temp = sender as? UIButton{
+            temp.isHidden = true
+        }
+        
     }
     
    
