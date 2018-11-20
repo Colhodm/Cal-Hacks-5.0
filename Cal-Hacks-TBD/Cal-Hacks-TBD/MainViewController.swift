@@ -11,8 +11,10 @@ import UIKit
 class MainViewController: UIViewController {
     
     
+    @IBOutlet weak var myMap: UIView!
     @IBOutlet weak var myConstraint: NSLayoutConstraint!
     var sideMenuOpen = false
+    var myMask: UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,8 +25,12 @@ class MainViewController: UIViewController {
         print("IN HERE")
         if sideMenuOpen {
             myConstraint.constant = -240
+            self.myMap.mask = myMask
             sideMenuOpen = false
         } else {
+            myMask = self.myMap.mask
+            self.myMap.mask = UIView(frame: myMap.frame)
+            self.myMap.mask?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             myConstraint.constant = 0
             sideMenuOpen = true
         }

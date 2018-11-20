@@ -23,16 +23,18 @@ class MapViewController: UIViewController  {
     var placeNames = [String : GooglePlaces.GMSPlace]()
     var finalDest = ""
 
+    @IBOutlet weak var myBottom: UIView!
     
-    @IBOutlet weak var searchBar: UITextField!
+
+    @IBOutlet weak var mySearch: UIView!
+    @IBOutlet weak var mapView: GMSMapView!
     
-    @IBOutlet var mapView: GMSMapView!
-    
+    @IBOutlet weak var mySearchBut: UIButton!
     @IBOutlet weak var myView: UIView!
     
     
-    @IBOutlet weak var myStack: UIStackView!
-    @IBOutlet weak var myOptions: UITableView!
+    //@IBOutlet weak var myStack: UIStackView!
+   // @IBOutlet weak var myOptions: UITableView!
     
     
     var locationManager = CLLocationManager()
@@ -78,16 +80,20 @@ class MapViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Think about how to fix map stuff like being able to zoom in
-        mapView.addSubview(myView)
-        mapView.addSubview(myStack)
+        //mapView.addSubview(myView)
+        //mapView.addSubview(myBottom)
+        mySearchBut.layer.cornerRadius = 10
+        mySearchBut.clipsToBounds = true
+        mapView.addSubview(mySearch)
+
 
 
 
         self.locationManager.delegate = self
-       self.myOptions.delegate = self
-        self.myOptions.dataSource = self
-        self.myOptions.isScrollEnabled = true;
-        self.myOptions.isHidden = true;
+       //self.myOptions.delegate = self
+        //self.myOptions.dataSource = self
+        //self.myOptions.isScrollEnabled = true;
+        //self.myOptions.isHidden = true;
         self.locationManager.startUpdatingLocation()
         scheduledTimerWithTimeInterval()
         locationManager.requestWhenInUseAuthorization()
@@ -128,52 +134,52 @@ class MapViewController: UIViewController  {
         return .lightContent
     }
     
-    @objc func searchRecords(textField:String){
-        placeAutocomplete()
-        self.myOptions.reloadData()
-        self.myOptions.isHidden = false
-    }
-    func filterArray(){
-        var temp = [String]()
-        for restaurant in myArray{
-            if restaurant.contains(searchBar.text!){
-                temp.append(restaurant)
-            }
-        }
-        self.myArray = temp
-        self.querylen = searchBar.text!.count
-    }
-    func placeAutocomplete() {
-        let filter = GMSAutocompleteFilter()
-        filter.type = .establishment
-        var temp = searchBar.text! as! String
-        placesClient.autocompleteQuery(temp, bounds: nil, filter: filter, callback: {(results, error) -> Void in
-            if let error = error {
-                print("Autocomplete error \(error)")
-                return
-            }
-            if let results = results {
-                // SHOULD FIX THIS SO IT MAKES LESS CALLS TO GOOGLE API SINCE WE"RE THROTTLED
-                self.myArray = [String]()
-                for result in results {
-                    self.myArray.append(result.attributedPrimaryText.string)
-                    self.placesClient.lookUpPlaceID(result.placeID!, callback: { (place, error) -> Void in
-                        if let error = error {
-                            print("lookup place id query error: \(error.localizedDescription)")
-                            return
-                        }
-                        guard let place = place else {
-                            print("No place details for \(result.placeID!)")
-                            return
-                        }
-                        self.placeNames[result.attributedPrimaryText.string] = place
-                    })
-                }
-            }
-            self.myOptions.reloadData()
-           self.myOptions.isHidden = false
-        })
-    }
+//    @objc func searchRecords(textField:String){
+//        placeAutocomplete()
+//        self.myOptions.reloadData()
+//        self.myOptions.isHidden = false
+//    }
+//    func filterArray(){
+//        var temp = [String]()
+//        for restaurant in myArray{
+//            if restaurant.contains(searchBar.text!){
+//                temp.append(restaurant)
+//            }
+//        }
+//        self.myArray = temp
+//        self.querylen = searchBar.text!.count
+//    }
+//    func placeAutocomplete() {
+//        let filter = GMSAutocompleteFilter()
+//        filter.type = .establishment
+//        var temp = searchBar.text! as! String
+//        placesClient.autocompleteQuery(temp, bounds: nil, filter: filter, callback: {(results, error) -> Void in
+//            if let error = error {
+//                print("Autocomplete error \(error)")
+//                return
+//            }
+//            if let results = results {
+//                // SHOULD FIX THIS SO IT MAKES LESS CALLS TO GOOGLE API SINCE WE"RE THROTTLED
+//                self.myArray = [String]()
+//                for result in results {
+//                    self.myArray.append(result.attributedPrimaryText.string)
+//                    self.placesClient.lookUpPlaceID(result.placeID!, callback: { (place, error) -> Void in
+//                        if let error = error {
+//                            print("lookup place id query error: \(error.localizedDescription)")
+//                            return
+//                        }
+//                        guard let place = place else {
+//                            print("No place details for \(result.placeID!)")
+//                            return
+//                        }
+//                        self.placeNames[result.attributedPrimaryText.string] = place
+//                    })
+//                }
+//            }
+//          //  self.myOptions.reloadData()
+//          // self.myOptions.isHidden = false
+//        })
+//    }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
@@ -330,7 +336,7 @@ extension MapViewController: GMSMapViewDelegate{
 }
 extension MapViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchRecords(textField: searchBar.text!)
+        //searchRecords(textField: searchBar.text!)
         searchBar.resignFirstResponder()
     }
     
@@ -354,23 +360,23 @@ extension MapViewController: UITableViewDelegate,UITableViewDataSource {
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        
-        let cell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
-        
-        if cell.textLabel?.text?.count == 0{
-            searchBar.text = "Sorry, no matches were found please enter a new query"
-            myOptions.isHidden = true
-            return
-        } else {
-            searchBar.text = (cell.textLabel?.text as? String)
-            finalDest = (cell.textLabel?.text)!
-            myPlacesSoFar.append(self.placeNames[(cell.textLabel?.text)!]!)
-            myOptions.isHidden = true
-            return
-        }
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let indexPath = tableView.indexPathForSelectedRow
+//
+//        let cell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+//
+//        if cell.textLabel?.text?.count == 0{
+//            searchBar.text = "Sorry, no matches were found please enter a new query"
+//            //myOptions.isHidden = true
+//            return
+//        } else {
+//            searchBar.text = (cell.textLabel?.text as? String)
+//            finalDest = (cell.textLabel?.text)!
+//            myPlacesSoFar.append(self.placeNames[(cell.textLabel?.text)!]!)
+//           // myOptions.isHidden = true
+//            return
+//        }
+//    }
     
     
 }
