@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     var myMask: UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("RELOADED")
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(gestureRecognizer:)))
@@ -26,13 +26,16 @@ class MainViewController: UIViewController {
         self.myMap.isUserInteractionEnabled = true
     }
     @objc func tapped(gestureRecognizer: UITapGestureRecognizer) {
+        print("SHOULD BE RUNNING")
         // Remove the blue view.
         if sideMenuOpen{
         toggleSideMenu()
         }
     }
     @objc func toggleSideMenu(){
+        print("XXX")
         print("IN HERE")
+        print(myConstraint.constant)
         if sideMenuOpen {
             // NOTE THIS WILL BREAK IF THE ORDER SWITCHES BUT SHOULD BE ALRIGHT FOR NOW
             self.myMap.subviews[0].subviews[0].subviews[0].isHidden = false
@@ -40,10 +43,12 @@ class MainViewController: UIViewController {
             self.myMap.mask = myMask
             sideMenuOpen = false
         } else {
+            print("SHOULD HAVE RAN THIS")
+            myConstraint.constant = 0
             myMask = self.myMap.mask
             self.myMap.mask = UIView(frame: myMap.frame)
             self.myMap.mask?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            myConstraint.constant = 0
+            print(myConstraint.constant)
             sideMenuOpen = true
         }
         UIView.animate(withDuration: 0.3, delay:0.0, options: .curveEaseOut, animations: {

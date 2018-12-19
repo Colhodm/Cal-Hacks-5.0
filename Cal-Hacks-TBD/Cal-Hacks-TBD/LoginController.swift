@@ -21,7 +21,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
     var placeNames = [String : GooglePlaces.GMSPlace]()
     var finalDest = ""
     var logIn = false
-
+    @IBOutlet weak var order: UIButton!
+    
 
     
     
@@ -87,6 +88,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         destination.addTarget(self, action: #selector(searchRecords(textField:)), for: .editingChanged)
+        self.order.alpha = 0.5
 
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -150,6 +152,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
                 }
             }
         })
+    }
+    
+    @IBAction func unWindMap(_ sender: Any) {
+        performSegue(withIdentifier: "unwindSegueToMap", sender: self)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

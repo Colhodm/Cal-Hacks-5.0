@@ -109,6 +109,8 @@ class MapViewController: UIViewController  {
     @IBAction func toggleSideBar(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
         if let temp = sender as? UIButton{
+            // bug here when we return from the page of ordering    21q
+            print("BUGGING OUT AND CAUSING It to DISSAPEAR")
             temp.isHidden = true
         }
         
@@ -123,6 +125,7 @@ class MapViewController: UIViewController  {
         mySearchBut.layer.cornerRadius = 10
         mySearchBut.clipsToBounds = true
         mapView.addSubview(mySearch)
+        print(mySearchBut)
 
 
 
@@ -165,6 +168,7 @@ class MapViewController: UIViewController  {
         }
         self.navigationController?.isToolbarHidden = true
         self.navigationItem.hidesBackButton = true
+        self.deliver.alpha = 0.5
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -238,7 +242,6 @@ class MapViewController: UIViewController  {
             print(error.localizedDescription)
         }
         Alamofire.request(request).responseJSON { (response) in
-            print(response)
             
         }
         
@@ -248,7 +251,9 @@ class MapViewController: UIViewController  {
     
     
 
-    
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue){
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -290,7 +295,6 @@ class MapViewController: UIViewController  {
             print(error.localizedDescription)
         }
             Alamofire.request(request).responseJSON { (response) in
-                print(response)
                 if response.value == nil{
                     return
                 }
