@@ -27,7 +27,9 @@ class MainViewController: UIViewController {
     }
     @objc func tapped(gestureRecognizer: UITapGestureRecognizer) {
         // Remove the blue view.
+        if sideMenuOpen{
         toggleSideMenu()
+        }
     }
     @objc func toggleSideMenu(){
         print("IN HERE")

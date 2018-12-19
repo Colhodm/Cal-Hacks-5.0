@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18A8B42E468E357A1C021F11 /* Pods_Cal_Hacks_TBDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDD54506DCE2F3A449E8421 /* Pods_Cal_Hacks_TBDUITests.framework */; };
 		2505241A88BF9E37BCF7FEA6 /* Pods_Cal_Hacks_TBD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B94983741AF1FAAC2BA962 /* Pods_Cal_Hacks_TBD.framework */; };
+		89452E4A21C82120004507C1 /* PossibleContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89452E4921C8211F004507C1 /* PossibleContracts.swift */; };
 		89756DA5219E3F58009002F5 /* animated_cart.gif in Resources */ = {isa = PBXBuildFile; fileRef = 89756DA4219E3F57009002F5 /* animated_cart.gif */; };
 		89756DA7219E3FA0009002F5 /* shoppingcart.png in Resources */ = {isa = PBXBuildFile; fileRef = 89756DA6219E3F9F009002F5 /* shoppingcart.png */; };
 		89756DA9219E8382009002F5 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89756DA8219E8382009002F5 /* SideMenuTableViewController.swift */; };
@@ -56,6 +57,7 @@
 		278A200F437F689B9D8673A3 /* Pods-Cal-Hacks-TBDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.debug.xcconfig"; sourceTree = "<group>"; };
 		54C8615B64C88ED35A152416 /* Pods-Cal-Hacks-TBDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		89452E4921C8211F004507C1 /* PossibleContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleContracts.swift; sourceTree = "<group>"; };
 		89756DA4219E3F57009002F5 /* animated_cart.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = animated_cart.gif; sourceTree = "<group>"; };
 		89756DA6219E3F9F009002F5 /* shoppingcart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoppingcart.png; sourceTree = "<group>"; };
 		89756DA8219E8382009002F5 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */,
-				89BCC293218E997B0078FFFD /* contractsConfirm.swift */,
 				89917D0E218D3F6000861141 /* MapViewController.swift */,
 				89917CE0218D3CC700861141 /* AppDelegate.swift */,
 				89917CE2218D3CC700861141 /* ViewController.swift */,
@@ -162,6 +163,8 @@
 				89CBA47F21A3F1520024766D /* mySideBarParent.swift */,
 				89756DAA219E8D67009002F5 /* MainViewController.swift */,
 				89756DA8219E8382009002F5 /* SideMenuTableViewController.swift */,
+				89BCC293218E997B0078FFFD /* contractsConfirm.swift */,
+				89452E4921C8211F004507C1 /* PossibleContracts.swift */,
 				89756DA6219E3F9F009002F5 /* shoppingcart.png */,
 				89756DA4219E3F57009002F5 /* animated_cart.gif */,
 				89C91046218DFDB2004EC778 /* LoginController.swift */,
@@ -447,6 +450,7 @@
 				89917CE3218D3CC700861141 /* ViewController.swift in Sources */,
 				89BCC286218E2ADD0078FFFD /* SignUp.swift in Sources */,
 				89917D0F218D3F6000861141 /* MapViewController.swift in Sources */,
+				89452E4A21C82120004507C1 /* PossibleContracts.swift in Sources */,
 				89CBA48021A3F1520024766D /* mySideBarParent.swift in Sources */,
 				89756DA9219E8382009002F5 /* SideMenuTableViewController.swift in Sources */,
 				89C14E55218D914A00E56899 /* api.swift in Sources */,
