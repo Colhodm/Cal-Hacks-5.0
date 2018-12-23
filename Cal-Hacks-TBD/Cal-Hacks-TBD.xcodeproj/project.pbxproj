@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		18A8B42E468E357A1C021F11 /* Pods_Cal_Hacks_TBDUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDD54506DCE2F3A449E8421 /* Pods_Cal_Hacks_TBDUITests.framework */; };
 		2505241A88BF9E37BCF7FEA6 /* Pods_Cal_Hacks_TBD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B94983741AF1FAAC2BA962 /* Pods_Cal_Hacks_TBD.framework */; };
+		890325E121CF4FC30065183F /* statushub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890325E021CF4FC30065183F /* statushub.swift */; };
+		890325E321CF52E30065183F /* progressHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890325E221CF52E30065183F /* progressHub.swift */; };
 		89452E4A21C82120004507C1 /* PossibleContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89452E4921C8211F004507C1 /* PossibleContracts.swift */; };
 		8951F29621CAC7C000ADC9A6 /* NavigationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8951F29521CAC7C000ADC9A6 /* NavigationSearch.swift */; };
 		8951F29821CAD35100ADC9A6 /* 16487850_1239128962845366_7463767683814845351_o.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8951F29721CAD35100ADC9A6 /* 16487850_1239128962845366_7463767683814845351_o.jpg */; };
@@ -59,6 +61,8 @@
 		278A200F437F689B9D8673A3 /* Pods-Cal-Hacks-TBDUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3CED97FE88849B0AAFBF9525 /* Pods-Cal-Hacks-TBD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBD/Pods-Cal-Hacks-TBD.debug.xcconfig"; sourceTree = "<group>"; };
 		54C8615B64C88ED35A152416 /* Pods-Cal-Hacks-TBDUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cal-Hacks-TBDUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cal-Hacks-TBDUITests/Pods-Cal-Hacks-TBDUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		890325E021CF4FC30065183F /* statushub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statushub.swift; sourceTree = "<group>"; };
+		890325E221CF52E30065183F /* progressHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressHub.swift; sourceTree = "<group>"; };
 		89452E4921C8211F004507C1 /* PossibleContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleContracts.swift; sourceTree = "<group>"; };
 		8951F29521CAC7C000ADC9A6 /* NavigationSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSearch.swift; sourceTree = "<group>"; };
 		8951F29721CAD35100ADC9A6 /* 16487850_1239128962845366_7463767683814845351_o.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 16487850_1239128962845366_7463767683814845351_o.jpg; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				8951F29721CAD35100ADC9A6 /* 16487850_1239128962845366_7463767683814845351_o.jpg */,
 				89BCC285218E2ADD0078FFFD /* SignUp.swift */,
 				89917CE4218D3CC700861141 /* Main.storyboard */,
+				890325E221CF52E30065183F /* progressHub.swift */,
+				890325E021CF4FC30065183F /* statushub.swift */,
 				8951F29521CAC7C000ADC9A6 /* NavigationSearch.swift */,
 				89BCC293218E997B0078FFFD /* contractsConfirm.swift */,
 				89452E4921C8211F004507C1 /* PossibleContracts.swift */,
@@ -458,11 +464,13 @@
 				89BCC286218E2ADD0078FFFD /* SignUp.swift in Sources */,
 				89917D0F218D3F6000861141 /* MapViewController.swift in Sources */,
 				89452E4A21C82120004507C1 /* PossibleContracts.swift in Sources */,
+				890325E121CF4FC30065183F /* statushub.swift in Sources */,
 				89CBA48021A3F1520024766D /* mySideBarParent.swift in Sources */,
 				89756DA9219E8382009002F5 /* SideMenuTableViewController.swift in Sources */,
 				89C14E55218D914A00E56899 /* api.swift in Sources */,
 				89BCC290218E7ABA0078FFFD /* contractsStatus.swift in Sources */,
 				8951F29621CAC7C000ADC9A6 /* NavigationSearch.swift in Sources */,
+				890325E321CF52E30065183F /* progressHub.swift in Sources */,
 				89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */,
 				89C91047218DFDB2004EC778 /* LoginController.swift in Sources */,
 				89756DAB219E8D67009002F5 /* MainViewController.swift in Sources */,
