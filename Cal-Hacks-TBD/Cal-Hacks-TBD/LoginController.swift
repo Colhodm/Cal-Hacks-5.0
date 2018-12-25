@@ -36,7 +36,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
    
     @IBAction func sendReq(_ sender: Any) {
-        sendSubmitRequest()
+        // UNCOMMENT THIS WHEN I"M ONLINE
+        //sendSubmitRequest()
     }
     
     func sendSubmitRequest(){
@@ -157,6 +158,10 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @IBAction func unWindMap(_ sender: Any) {
         performSegue(withIdentifier: "unwindSegueToMap", sender: self)
 
+    }
+    
+    @IBAction func unWindStatusHub(segue:UIStoryboardSegue) {
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

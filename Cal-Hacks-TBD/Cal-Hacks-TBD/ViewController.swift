@@ -35,6 +35,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if ((firstBox.text?.count)! > 1 && (secondBox.text?.count)! > 2){
             sendLoginRequest()
     }
+        // REMOVE WHEN ONLINE:
+        self.userid = "101"
+        self.logIn = true
+        // might work but not sure we'll need to double check this
+        self.performSegue(withIdentifier: "mapscreensegue", sender: self)
     
    
     
