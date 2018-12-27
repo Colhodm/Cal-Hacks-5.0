@@ -28,6 +28,7 @@ class PossibleContracts: UIViewController {
         makeGetRequest()
         self.myOptions.reloadData()
         print("LOADED THE CONTRACTS CONFIRM PAGE")
+
         // Do any additional setup after loading the view.
     }
 

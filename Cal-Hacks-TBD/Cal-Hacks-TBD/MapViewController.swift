@@ -105,7 +105,12 @@ class MapViewController: UIViewController  {
         }
     }
     
-    
+    @IBAction func unWindStatusHub(segue:UIStoryboardSegue) {
+        
+    }
+    @IBAction func unWindStatusHubPart2(segue:UIStoryboardSegue) {
+        
+    }
     @IBAction func toggleSideBar(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
         if let temp = sender as? UIButton{

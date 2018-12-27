@@ -66,8 +66,13 @@ class progressHub: UIViewController {
             }
             self.myOptions.reloadData()
         }
+        
     }
 
+    @IBAction func unWindToMap(_ sender: Any) {
+        performSegue(withIdentifier: "BackToMap", sender: self)
+
+    }
     /*
     // MARK: - Navigation
 
