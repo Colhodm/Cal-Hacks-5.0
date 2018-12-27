@@ -21,7 +21,7 @@ class MapViewController: UIViewController  {
     var querylen = 4
     var myPlacesSoFar = [GooglePlaces.GMSPlace]()
     var placeNames = [String : GooglePlaces.GMSPlace]()
-    var finalDest = ""
+    var finalDest: GMSPlace!
 
     @IBOutlet weak var myBottom: UIView!
     
@@ -109,6 +109,9 @@ class MapViewController: UIViewController  {
         
     }
     @IBAction func unWindStatusHubPart2(segue:UIStoryboardSegue) {
+        
+    }
+    @IBAction func unWindSearch(segue:UIStoryboardSegue) {
         
     }
     @IBAction func toggleSideBar(_ sender: Any) {
@@ -268,7 +271,11 @@ class MapViewController: UIViewController  {
     // this function makes the get request to the backend to write some information
     @objc func makeGetRequest(){
             //create the url with URL
-        var sourcefinal2 = ""
+        var finalDest = ""
+        if self.finalDest != nil{
+        finalDest = self.finalDest.name
+        }
+            var sourcefinal2 = ""
             var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_contracts_spatial")!)
         if finalDest != "" {
             request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_contracts_spatial_2")!)
