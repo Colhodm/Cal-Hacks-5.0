@@ -22,6 +22,7 @@ class MapViewController: UIViewController  {
     var myPlacesSoFar = [GooglePlaces.GMSPlace]()
     var placeNames = [String : GooglePlaces.GMSPlace]()
     var finalDest: GMSPlace!
+    var contractsOpen = false
 
     @IBOutlet weak var myBottom: UIView!
     
@@ -103,6 +104,19 @@ class MapViewController: UIViewController  {
             self.isMap = true
         })
         }
+    }
+    @IBAction func switchIcons(_ sender: Any) {
+        if let temp = sender as? UIButton{
+            if !contractsOpen{
+                temp.setImage(UIImage(named: "icons8-map-30.png"), for: .normal)
+                contractsOpen = true
+            } else {
+                temp.setImage(UIImage(named: "icons8-todo-list-30.png"), for: .normal)
+                contractsOpen = false
+
+            }
+        }
+
     }
     
     @IBAction func unWindStatusHub(segue:UIStoryboardSegue) {

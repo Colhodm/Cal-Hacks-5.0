@@ -746,19 +746,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pB-eI-1FG">
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0D-CY-zM5">
-                                        <rect key="frame" x="0.0" y="0.0" width="186" height="72"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0D-CY-zM5">
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1185330354" green="0.31584781360000003" blue="0.72777204949999996" alpha="0.5958101455" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Order">
+                                        <state key="normal" image="icons8-clear-shopping-cart-65.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-VD-VEv">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hw3-VD-VEv">
                                         <rect key="frame" x="187" y="0.0" width="188" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.1185330354" green="0.31584781360000003" blue="0.72777204949999996" alpha="0.5958101455" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Deliver">
+                                        <state key="normal" image="icons8-deliver-food-65.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" red="0.1185330354" green="0.31584781360000003" blue="0.72777204949999996" alpha="0.5958101455" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1147,13 +1147,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGy-i8-2qq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyE-lj-lXl">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyE-lj-lXl">
                                         <rect key="frame" x="40" y="33" width="30" height="30"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Button" image="icons8-contacts-30.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="toggleSideBar:" destination="wvV-Ln-w0C" eventType="touchUpInside" id="bWS-j2-LsC"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOP-aP-Dfa">
+                                        <rect key="frame" x="308" y="33" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="84a-u2-vWT"/>
+                                        </constraints>
+                                        <state key="normal" title="List" image="icons8-menu-30.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="myContractList:" destination="wvV-Ln-w0C" eventType="touchUpInside" id="4gj-29-qD5"/>
+                                            <action selector="switchIcons:" destination="wvV-Ln-w0C" eventType="touchUpInside" id="zFo-xK-Yui"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tL2-bo-AIk">
@@ -1162,24 +1175,12 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAy-6V-SeA">
-                                        <rect key="frame" x="141" y="50" width="93" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAy-6V-SeA">
+                                        <rect key="frame" x="164" y="54" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="My Contracts"/>
+                                        <state key="normal" image="icons8-todo-list-30.png"/>
                                         <connections>
                                             <segue destination="vRH-Lx-jMt" kind="show" id="6sU-Ha-Jwu"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOP-aP-Dfa">
-                                        <rect key="frame" x="308" y="33" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="84a-u2-vWT"/>
-                                        </constraints>
-                                        <state key="normal" title="List">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="myContractList:" destination="wvV-Ln-w0C" eventType="touchUpInside" id="4gj-29-qD5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1235,24 +1236,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cox-UZ-fb9">
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-cn-jAd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-cn-jAd">
                                         <rect key="frame" x="0.0" y="0.0" width="187" height="72"/>
                                         <color key="backgroundColor" red="0.1185330354" green="0.31584781360000003" blue="0.72777204949999996" alpha="0.5958101455" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Order">
+                                        <state key="normal" image="icons8-clear-shopping-cart-65.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <segue destination="diG-zi-HYZ" kind="show" id="dAt-qm-m7t"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmY-5g-uTi">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmY-5g-uTi">
                                         <rect key="frame" x="188" y="0.0" width="187" height="72"/>
                                         <color key="backgroundColor" red="0.1185330354" green="0.31584781360000003" blue="0.72777204949999996" alpha="0.5958101455" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="187" id="bUZ-Db-cpl"/>
                                         </constraints>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" title="Deliver">
+                                        <state key="normal" image="icons8-deliver-food-65.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -1534,14 +1535,19 @@
     <resources>
         <image name="16487850_1239128962845366_7463767683814845351_o.jpg" width="1136" height="1136"/>
         <image name="icons8-cash-in-hand-20.png" width="20" height="20"/>
+        <image name="icons8-clear-shopping-cart-65.png" width="65" height="65"/>
+        <image name="icons8-contacts-30.png" width="30" height="30"/>
+        <image name="icons8-deliver-food-65.png" width="65" height="65"/>
         <image name="icons8-exit-20.png" width="20" height="20"/>
         <image name="icons8-help-20.png" width="20" height="20"/>
+        <image name="icons8-menu-30.png" width="30" height="30"/>
         <image name="icons8-privacy-20.png" width="20" height="20"/>
         <image name="icons8-search-39.png" width="39" height="39"/>
         <image name="icons8-settings-20.png" width="20" height="20"/>
+        <image name="icons8-todo-list-30.png" width="30" height="30"/>
         <image name="shoppingcart.png" width="299" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6sU-Ha-Jwu"/>
+        <segue reference="C4u-Gp-M6j"/>
     </inferredMetricsTieBreakers>
 </document>
