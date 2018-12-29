@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 import GooglePlaces
 class ViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
     var userid = ""
@@ -32,26 +31,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
            self.performSegue(withIdentifier: "createContract", sender: self)
     }
     @IBAction func login(_ sender: Any) {
-        if ((firstBox.text?.count)! > 1 && (secondBox.text?.count)! > 2){
+        if ((firstBox.text?.count)! >= 1 && (secondBox.text?.count)! >= 1){
             sendLoginRequest()
     }
-        // REMOVE WHEN ONLINE:
-        self.userid = "101"
-        self.logIn = true
-        // might work but not sure we'll need to double check this
-        self.performSegue(withIdentifier: "mapscreensegue", sender: self)
+   
     
    
     
     }
     func sendLoginRequest(){
             //create the url with URL
-            var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_login")!)
+            print("DEBUGGING")
+            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/new_login")!)
             request.httpMethod = HTTPMethod.post.rawValue
+            print("MIDDLE")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let name = firstBox.text
             let password = secondBox.text
         let parameters = ["name":name!, "password": password!] as! Dictionary<String, String>
+        print("SENT")
         
         
         do {
@@ -68,6 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if parameters == nil{
                     return 
                 }
+                print(parameters)
                 if (parameters!["id"] != "-1"){
                     self.userid = parameters!["id"]!
                     self.logIn = true

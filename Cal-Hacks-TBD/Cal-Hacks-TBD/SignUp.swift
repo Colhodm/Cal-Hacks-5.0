@@ -32,7 +32,7 @@ class SignUp: UIViewController, UITextFieldDelegate {
     
     func sendSignUpRequest(){
             //create the url with URL
-            var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_user_info")!)
+            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/new_user_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let name = self.name.text

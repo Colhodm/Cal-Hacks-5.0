@@ -12,7 +12,7 @@ import GooglePlaces
 import Alamofire
 
 class MapViewController: UIViewController  {
-    var zoomLevel: Float = 10.0
+    var zoomLevel: Float = 2
     var timer = Timer()
     var logIn = false
     var placesClient: GMSPlacesClient!
@@ -184,52 +184,6 @@ class MapViewController: UIViewController  {
         return .lightContent
     }
     
-//    @objc func searchRecords(textField:String){
-//        placeAutocomplete()
-//        self.myOptions.reloadData()
-//        self.myOptions.isHidden = false
-//    }
-//    func filterArray(){
-//        var temp = [String]()
-//        for restaurant in myArray{
-//            if restaurant.contains(searchBar.text!){
-//                temp.append(restaurant)
-//            }
-//        }
-//        self.myArray = temp
-//        self.querylen = searchBar.text!.count
-//    }
-//    func placeAutocomplete() {
-//        let filter = GMSAutocompleteFilter()
-//        filter.type = .establishment
-//        var temp = searchBar.text! as! String
-//        placesClient.autocompleteQuery(temp, bounds: nil, filter: filter, callback: {(results, error) -> Void in
-//            if let error = error {
-//                print("Autocomplete error \(error)")
-//                return
-//            }
-//            if let results = results {
-//                // SHOULD FIX THIS SO IT MAKES LESS CALLS TO GOOGLE API SINCE WE"RE THROTTLED
-//                self.myArray = [String]()
-//                for result in results {
-//                    self.myArray.append(result.attributedPrimaryText.string)
-//                    self.placesClient.lookUpPlaceID(result.placeID!, callback: { (place, error) -> Void in
-//                        if let error = error {
-//                            print("lookup place id query error: \(error.localizedDescription)")
-//                            return
-//                        }
-//                        guard let place = place else {
-//                            print("No place details for \(result.placeID!)")
-//                            return
-//                        }
-//                        self.placeNames[result.attributedPrimaryText.string] = place
-//                    })
-//                }
-//            }
-//          //  self.myOptions.reloadData()
-//          // self.myOptions.isHidden = false
-//        })
-//    }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
@@ -276,9 +230,9 @@ class MapViewController: UIViewController  {
         finalDest = self.finalDest.name
         }
             var sourcefinal2 = ""
-            var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_contracts_spatial")!)
+            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_contracts_spatial")!)
         if finalDest != "" {
-            request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_contracts_spatial_2")!)
+            request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_contracts_spatial_2")!)
         }
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

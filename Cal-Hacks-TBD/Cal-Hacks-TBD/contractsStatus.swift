@@ -29,7 +29,7 @@ class contractsStatus: UIViewController {
     }
     @objc func makeGetRequest(){
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/complete_contract")!)
+        var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/complete_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters = ["userID": userID,"contractID":contractID] as Dictionary<String, String>

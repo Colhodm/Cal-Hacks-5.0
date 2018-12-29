@@ -37,12 +37,12 @@ class LoginController: UIViewController, UITextFieldDelegate {
    
     @IBAction func sendReq(_ sender: Any) {
         // UNCOMMENT THIS WHEN I"M ONLINE
-        //sendSubmitRequest()
+        sendSubmitRequest()
     }
     
     func sendSubmitRequest(){
             //create the url with URL
-            var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/new_contract_info")!)
+            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/new_contract_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
        // if !destination.endEditing(false){

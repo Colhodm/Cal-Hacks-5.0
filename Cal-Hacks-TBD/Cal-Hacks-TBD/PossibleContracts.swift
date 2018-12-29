@@ -8,23 +8,24 @@
 
 import UIKit
 import Alamofire
-
+import GoogleMaps
 class PossibleContracts: UIViewController {
-    
+    var timer = Timer()
     var contractID = ""
     var userID = ""
     var myTemp = [String]()
-    var another = [String]()
     var myTempBackup = [String]()
-    var anotherBackup = [String]()
+    var myTempDescription = [String]()
     var myTempPrices = [String]()
-    var myBackupPrices = [String]()
+    var finalDest = ""
+    var locationManager = CLLocationManager()
     @IBOutlet weak var myOptions: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.myOptions.delegate = self
         self.myOptions.dataSource = self
         self.myOptions.isScrollEnabled = true;
+        scheduledTimerWithTimeInterval()
         makeGetRequest()
         self.myOptions.reloadData()
         print("LOADED THE CONTRACTS CONFIRM PAGE")
@@ -36,6 +37,10 @@ class PossibleContracts: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let vc = segue.destination as? contractsStatus
@@ -44,13 +49,25 @@ class PossibleContracts: UIViewController {
             vc.contractID = contractID
         }
     }
-    
     @objc func makeGetRequest(){
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_owner_contract")!)
+        var sourcefinal2 = ""
+        var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_contracts_spatial")!)
+        if finalDest != "" {
+            request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_contracts_spatial_2")!)
+        }
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["userID": userID] as Dictionary<String, String>
+        let myCoords = (locationManager.location?.coordinate)!
+        let quickone = "(" + myCoords.latitude.description
+        let tempone = quickone
+            + "," + myCoords.longitude.description
+        let sourcefinal =    tempone +  ")"
+        var parameters = ["location":sourcefinal, "radius": "1"] as Dictionary<String, String>
+        
+        if finalDest != "" {
+            parameters = ["sloc":sourcefinal, "eloc": sourcefinal2 ,"radius":"1"] as Dictionary<String, String>
+        }
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -59,121 +76,72 @@ class PossibleContracts: UIViewController {
             print(error.localizedDescription)
         }
         Alamofire.request(request).responseJSON { (response) in
-            let names = response.value! as? [Any]
-            if names == nil{
+            if response.value == nil{
                 return
             }
-            for name in names! {
-                
-                let myCurrent = name as? Dictionary<String,Any>
-                // TODO fix server so that it sends back the description of the request
-                //print(myCurrent)
-                let start_location = myCurrent!["startLocation"] as? [Double]
-                let end_location = myCurrent!["endlocation"] as? [Double]
-                let contract_id = myCurrent!["_id"] as? Dictionary<String,Any>
-                let validity = myCurrent!["valid"]
-                let price = myCurrent!["price"]
-                let temp = validity as! Bool
-                let another = myCurrent!["active"] as! Bool
-                if temp
-                {
-                    self.another.append(contract_id!["$oid"] as! String)
-                    let title = myCurrent!["title"]
-                    self.anotherBackup.append(title as! String)
-                    self.myBackupPrices.append(String(price as! Int!))
-                } else if another {
-                    self.myTemp.append(contract_id!["$oid"] as! String)
-                    let title = myCurrent!["title"]
-                    self.myTempBackup.append(title as! String)
-                    self.myTempPrices.append(String(price as! Int!))
-                }
+            let temp = response.value! as? [Any]
+            if temp == nil{
+                return
             }
-            self.myOptions.reloadData()
+            self.renderData(responseData: temp!)
+            
         }
     }
+    
+    func renderData(responseData: [Any]){
+        // do some parsing to get the individual coordinates
+        // assuming we create some list:
+        // we're basically going to iterate through list and add them all to a path
+        //let path = GMSMutablePath()
+        // latitude: 37.8716,longitude: -122.2727
+        for name in responseData {
+            let myCurrent = name as? Dictionary<String,Any>
+            let start_location = myCurrent!["startLocation"] as? [Double]
+            let end_location = myCurrent!["endlocation"] as? [Double]
+            let contract_id = myCurrent!["_id"] as? Dictionary<String,Any>
+            let validity = myCurrent!["valid"]
+            let price = myCurrent!["price"]
+            let description = myCurrent!["description"]
+            let position = CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1]))
+            if !myTemp.contains((contract_id!["$oid"] as! String)){
+            self.myTemp.append(contract_id!["$oid"] as! String)
+            let title = myCurrent!["title"]
+            self.myTempBackup.append(title as! String)
+            self.myTempDescription.append(description as! String)
+            self.myTempPrices.append(String(price as! Int!))
+            }
+        }
+        self.myOptions.reloadData()
+    }
+    
 }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 class HeadlineTableViewCell: UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
     
     @IBOutlet weak var myAmount: UILabel!
+  
     @IBOutlet weak var myReqItem: UILabel!
     @IBOutlet weak var myReqName: UILabel!
 }
 
 
 extension PossibleContracts: UITableViewDelegate,UITableViewDataSource {
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
         Int {
-            switch (section) {
-            case 0:
-                return self.myTemp.count
-            case 1:
-                return self.another.count
-            default:
-                print("WHAT AM I DOING HERE"
-                )
-                return self.myTemp.count
-            }
+            return self.myTemp.count
     }
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var temp = "myArray"
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell") as? HeadlineTableViewCell
-//        if cell == nil{
-//            cell = HeadlineTableViewCell(style: .default, reuseIdentifier: temp)
-//        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
-
-        switch (indexPath.section) {
-        case 0:
-            if (self.myTemp.count > 0){
-                cell.myReqName?.text = myTempBackup[indexPath.row]
-                cell.myAmount?.text = "Earn " + "$" + myTempPrices[indexPath.row]
-            }
-        case 1:
-            if (self.another.count > 0){
-                cell.myReqName?.text = anotherBackup[indexPath.row]
-                cell.myAmount?.text = "Earn " + "$" + myBackupPrices[indexPath.row]
-            }
-        default:
-            cell.myReqName?.text = "The id is "   + another[indexPath.row] + " the description is  " + myTemp[indexPath.row]
+        if (self.myTemp.count > 0){
+            cell.myReqName?.text = myTempBackup[indexPath.row]
+            cell.myAmount?.text = "Earn " + "$" + myTempPrices[indexPath.row]
+            cell.myReqItem?.text = myTempDescription[indexPath.row]
         }
         return cell
     }
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var sections = ["Pending", "Yet to be Assigned"]
-        return sections[section]
-        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        let cell = tableView.cellForRow(at: indexPath!)! as! HeadlineTableViewCell
-        // Fix these properties and stuff but in a bit
-        var temp = ""
-        var flag = false
-        if indexPath?.section == 0{
-            temp = another[(indexPath?.row)!]
-        }
-        else{
-            temp = myTemp[(indexPath?.row)!]
-        }
-        contractID = temp
-        self.performSegue(withIdentifier: "finalCellDown", sender: self)
-        
-    }
-    
-    
 }
