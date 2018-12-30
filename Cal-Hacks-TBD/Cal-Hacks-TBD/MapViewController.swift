@@ -171,10 +171,11 @@ class MapViewController: UIViewController  {
         
         
         //for each point you need, add it to your path
-        path.add(position)
         if locationManager.location != nil{
             path.add((locationManager.location?.coordinate)!)
             mapView?.isMyLocationEnabled = true
+        } else {
+            path.add(position)
         }
         //Update your mapView with path
         let mapBounds = GMSCoordinateBounds(path: path)
@@ -183,6 +184,7 @@ class MapViewController: UIViewController  {
 
 
         mapView.moveCamera(cameraUpdate)
+        mapView.moveCamera(GMSCameraUpdate.zoom(to: 16))
         locationManager.startUpdatingLocation()
         makeGetRequest()
         for gesture in mapView.gestureRecognizers! {
