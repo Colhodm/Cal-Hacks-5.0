@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class MainViewController: UIViewController {
     
     
@@ -24,6 +23,7 @@ class MainViewController: UIViewController {
         myMap.addGestureRecognizer(tapRecognizer)
         tapRecognizer.delegate = self
         self.myMap.isUserInteractionEnabled = true
+
     }
     @objc func tapped(gestureRecognizer: UITapGestureRecognizer) {
         print("SHOULD BE RUNNING")

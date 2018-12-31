@@ -11,7 +11,9 @@ import Alamofire
 
 class statushub: UIViewController {
     var contractID = ""
-    var userID = ""
+    var userID = finaluserid
+    var timer = Timer()
+
     var another = [String]()
     var anotherBackup = [String]()
     var myBackupPrices = [String]()
@@ -22,11 +24,13 @@ class statushub: UIViewController {
         self.myOptions.delegate = self
         self.myOptions.dataSource = self
         self.myOptions.isScrollEnabled = true;
-        makeGetRequest()
+        scheduledTimerWithTimeInterval()
         self.myOptions.reloadData()
-        print("RAN SOME STUFF")
-
         // Do any additional setup after loading the view.
+    }
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
     }
     
     @objc func makeGetRequest(){
@@ -34,7 +38,8 @@ class statushub: UIViewController {
         var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_owner_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["userID": userID] as Dictionary<String, String>
+        let parameters = ["userID": userID!]
+        print(userID!)
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -44,6 +49,9 @@ class statushub: UIViewController {
         }
         Alamofire.request(request).responseJSON { (response) in
             let names = response.value! as? [Any]
+            print("XXXXXXX")
+            print(names)
+            print("XXXXXX")
             if names == nil{
                 return
             }
@@ -58,20 +66,17 @@ class statushub: UIViewController {
                 let validity = myCurrent!["valid"]
                 let price = myCurrent!["price"]
                 let temp = validity as! Bool
-                let another = myCurrent!["active"] as! Bool
                 if temp
                 {
+                    if !self.another.contains((contract_id!["$oid"] as! String)){
                     self.another.append(contract_id!["$oid"] as! String)
                     let title = myCurrent!["title"]
                     self.anotherBackup.append(title as! String)
                     self.myBackupPrices.append(String(price as! Int!))
+                    }
                     // Don't need this else currently in this viewcontroller
                 }
             }
-            print("XXXXXXXXXXXXXXXXX")
-            print(self.another.count)
-            print("XXXXXXXXXXXXXXXXX")
-            
             self.myOptions.reloadData()
         }
     }

@@ -14,7 +14,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var destination: UITextField!
     var placesClient: GMSPlacesClient!
-    var userid = ""
+    var userid = finaluserid
     var myArray = [String]()
     var querylen = 4
     var myPlacesSoFar = [GooglePlaces.GMSPlace]()
@@ -36,7 +36,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
    
     @IBAction func sendReq(_ sender: Any) {
-        // UNCOMMENT THIS WHEN I"M ONLINE
         sendSubmitRequest()
     }
     
@@ -45,10 +44,6 @@ class LoginController: UIViewController, UITextFieldDelegate {
             var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/new_contract_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-       // if !destination.endEditing(false){
-        //    print("EXITING HERE")
-         //   return
-        //}
         let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!
         let temp = quick
             + "," + (placeNames[finalDest]?.coordinate.longitude.description)!
@@ -59,7 +54,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         let tempone = quickone
             + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
-        let parameters = ["destination":final, "price": price.text!,"userid":userid,"source":sourcefinal,"description":descriptionOfQuery.text!,"title":myTitle.text!] as! Dictionary<String, String>
+        let parameters = ["destination":final, "price": price.text!,"userid":userid!,"source":sourcefinal,"description":descriptionOfQuery.text!,"title":myTitle.text!] as! Dictionary<String, String>
         
         
         do {

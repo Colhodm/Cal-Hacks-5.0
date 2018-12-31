@@ -10,10 +10,12 @@ import UIKit
 import Alamofire
 class progressHub: UIViewController {
     var contractID = ""
-    var userID = ""
+    var userID = finaluserid
+
     var myTemp = [String]()
     var myTempBackup = [String]()
     var myTempPrices = [String]()
+    var timer = Timer()
 
     @IBOutlet weak var myOptions: UITableView!
     
@@ -22,16 +24,20 @@ class progressHub: UIViewController {
         self.myOptions.delegate = self
         self.myOptions.dataSource = self
         self.myOptions.isScrollEnabled = true;
-        makeGetRequest()
+        scheduledTimerWithTimeInterval()
         self.myOptions.reloadData()
         // Do any additional setup after loading the view.
+    }
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
     }
     @objc func makeGetRequest(){
         //create the url with URL
         var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_owner_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["userID": userID] as Dictionary<String, String>
+        let parameters = ["userID": userID!] 
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -58,10 +64,12 @@ class progressHub: UIViewController {
                 let another = myCurrent!["active"] as! Bool
                 if !temp && another
                 {
+                    if !self.myTemp.contains((contract_id!["$oid"] as! String)){
                     self.myTemp.append(contract_id!["$oid"] as! String)
                     let title = myCurrent!["title"]
                     self.myTempBackup.append(title as! String)
                     self.myTempPrices.append(String(price as! Int!))
+                    }
                 }
             }
             self.myOptions.reloadData()

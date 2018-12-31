@@ -12,7 +12,7 @@ import GoogleMaps
 class PossibleContracts: UIViewController {
     var timer = Timer()
     var contractID = ""
-    var userID = ""
+    var userID = finaluserid
     var myTemp = [String]()
     var myTempBackup = [String]()
     var myTempDescription = [String]()
@@ -39,15 +39,7 @@ class PossibleContracts: UIViewController {
     }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let vc = segue.destination as? contractsStatus
-        {
-            vc.userID = userID
-            vc.contractID = contractID
-        }
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
     }
     @objc func makeGetRequest(){
         //create the url with URL
@@ -99,11 +91,12 @@ class PossibleContracts: UIViewController {
             let start_location = myCurrent!["startLocation"] as? [Double]
             let end_location = myCurrent!["endlocation"] as? [Double]
             let contract_id = myCurrent!["_id"] as? Dictionary<String,Any>
-            let validity = myCurrent!["valid"]
+            let owner_id = myCurrent!["ownerID"] as! String!
+            let validity = myCurrent!["valid"] as! Bool
             let price = myCurrent!["price"]
             let description = myCurrent!["description"]
             let position = CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1]))
-            if !myTemp.contains((contract_id!["$oid"] as! String)){
+            if (!myTemp.contains((contract_id!["$oid"] as! String)) && validity && (finaluserid != owner_id)){
             self.myTemp.append(contract_id!["$oid"] as! String)
             let title = myCurrent!["title"]
             self.myTempBackup.append(title as! String)

@@ -16,7 +16,7 @@ class MapViewController: UIViewController  {
     var timer = Timer()
     var logIn = false
     var placesClient: GMSPlacesClient!
-    var userid = ""
+    var userid = finaluserid
     var myArray = [String]()
     var querylen = 4
     var myPlacesSoFar = [GooglePlaces.GMSPlace]()
@@ -65,17 +65,7 @@ class MapViewController: UIViewController  {
         }
         
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if let vc = segue.destination as? contractsConfirm
-        {
-            vc.userID = userid
-        }
-        if let vc = segue.destination as? LoginController
-        {
-            vc.userid = userid
-        }
-    }
+
     
     @IBAction func myContractList(_ sender: Any) {
         if isMap{
@@ -140,6 +130,9 @@ class MapViewController: UIViewController  {
     
    
     override func viewDidLoad() {
+        print("XXXXXX")
+        print(userid)
+        print("XXXXX")
         super.viewDidLoad()
         // Think about how to fix map stuff like being able to zoom in
         //mapView.addSubview(myView)
@@ -207,10 +200,10 @@ class MapViewController: UIViewController  {
     func makePostRequest(contractID: String){
         
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/accept_contract")!)
+        var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/accept_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["contractID":contractID, "userID":userid] as Dictionary<String, String>
+        let parameters = ["contractID":contractID, "userID":userid] as! Dictionary<String, String>
         
         
         do {
@@ -333,22 +326,6 @@ extension MapViewController: CLLocationManagerDelegate {
         print(error)
         return
     }
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.first else {
-//            return
-//        }
-//        if ((locationManager.location?.coordinate) != nil) {
-//        let path = GMSMutablePath()
-//        path.add((locationManager.location?.coordinate)!)
-//        mapView?.isMyLocationEnabled = true
-//        //Update your mapView with path
-//        let mapBounds = GMSCoordinateBounds(path: path)
-//        let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
-//        mapView.moveCamera(cameraUpdate)
-//        return
-//    }
-    
-//}
 }
 
 extension MapViewController: GMSMapViewDelegate{

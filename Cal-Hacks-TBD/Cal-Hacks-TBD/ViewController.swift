@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import GooglePlaces
+public var finaluserid: String!
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
@@ -32,12 +33,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     @IBAction func login(_ sender: Any) {
         if ((firstBox.text?.count)! >= 1 && (secondBox.text?.count)! >= 1){
+            print("SENDING")
             sendLoginRequest()
     }
    
+    }
+    @IBAction func unWindSignUpHub(segue:UIStoryboardSegue) {
+        
+    }
+    @IBAction func unWindForgotHub(segue:UIStoryboardSegue) {
+        
+    }
     
-   
-    
+    @objc func applicationDidBecomeActive() {
+        // Update your view controller
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        self.logInBut.layer.cornerRadius = 10
+        self.logInBut.clipsToBounds = true
+        self.logInBut.titleLabel?.adjustsFontSizeToFitWidth = true
+        print(firstBox)
+        print(secondBox)
+        print("finished running")
+        
+        
     }
     func sendLoginRequest(){
             //create the url with URL
@@ -77,7 +96,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
     }
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationDidBecomeActive),
+                                               name: .UIApplicationDidBecomeActive, // UIApplication.didBecomeActiveNotification for swift 4.2+
+            object: nil)
+        print("TESTING1")
         super.viewDidLoad()
+        print("TESTING2")
         firstBox.delegate = self
         secondBox.delegate = self
         self.locationManager.delegate = self
@@ -86,16 +111,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.logInBut.layer.cornerRadius = 10
         self.logInBut.clipsToBounds = true
         self.logInBut.titleLabel?.adjustsFontSizeToFitWidth = true
+        print("I FINISHED LOADING")
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if let vc = segue.destination as? MapViewController
-        {
-            vc.userid = userid
-            vc.logIn = logIn
-        }
+
         if let vc = segue.destination as? SignUp
         {
             //signUpBox.isHidden = true
@@ -103,6 +125,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if let vc = segue.destination as? LoginController
         {
             vc.userid = userid
+        }
+        if let vc = segue.destination as? MainViewController
+        {
+             finaluserid = userid
         }
         if let vc = segue.destination as? contractsConfirm
         {
@@ -113,6 +139,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        print("AM I RANDOMLY IN HERE")
     }
     
     

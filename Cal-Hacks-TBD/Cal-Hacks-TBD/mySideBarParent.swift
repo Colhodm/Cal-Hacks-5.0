@@ -9,7 +9,7 @@
 import UIKit
 
 class mySideBarParent: UIViewController {
-
+    var userid = finaluserid
     @IBAction func myProfile(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
     }
