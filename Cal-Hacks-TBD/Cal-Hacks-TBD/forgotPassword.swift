@@ -24,7 +24,7 @@ class forgotPassword: UIViewController, UITextFieldDelegate {
     }
     func sendForgotRequest(sender: UITextField){
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/forgot_password")!)
+        var request = URLRequest(url: URL(string: urlbase + "forgot_password")!)
         request.httpMethod = HTTPMethod.post.rawValue
         print("MIDDLE")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

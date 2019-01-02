@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/Colhodm/Desktop/Cal-Hacks-5.0/Cal-Hacks-TBD/Cal-Hacks-TBD/checkoutRowView.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Colhodm/Desktop/Cal-Hacks-5.0/Cal-Hacks-TBD/Cal-Hacks-TBD/highlightButton.swift">
+   </FileRef>
+   <FileRef
       location = "group:Cal-Hacks-TBD.xcodeproj">
    </FileRef>
    <FileRef

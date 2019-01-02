@@ -36,7 +36,7 @@ class contractsConfirm: UITableViewController {
    
     @objc func makeGetRequest(){
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://54.193.17.183:5000/get_owner_contract")!)
+        var request = URLRequest(url: URL(string: urlbase + "get_owner_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters = ["userID": userID] as Dictionary<String, String>

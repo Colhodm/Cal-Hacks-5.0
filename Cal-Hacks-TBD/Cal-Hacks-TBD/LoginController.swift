@@ -41,7 +41,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     func sendSubmitRequest(){
             //create the url with URL
-            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/new_contract_info")!)
+            var request = URLRequest(url: URL(string: urlbase + "new_contract_info")!)
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let quick = "(" + (placeNames[finalDest]?.coordinate.latitude.description)!

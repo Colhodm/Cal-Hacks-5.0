@@ -52,6 +52,11 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>13.57.239.255.xip.io</key>
+			<string></string>
+		</dict>
 	</dict>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

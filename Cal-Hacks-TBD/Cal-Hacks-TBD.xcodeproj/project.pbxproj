@@ -45,7 +45,12 @@
 		89BCC286218E2ADD0078FFFD /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC285218E2ADD0078FFFD /* SignUp.swift */; };
 		89BCC290218E7ABA0078FFFD /* contractsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */; };
 		89BCC294218E997B0078FFFD /* contractsConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC293218E997B0078FFFD /* contractsConfirm.swift */; };
-		89C14E55218D914A00E56899 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C14E54218D914A00E56899 /* api.swift */; };
+		89C39ED721DC8E7B002EE304 /* stripeObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39ED621DC8E7B002EE304 /* stripeObj.swift */; };
+		89C39ED921DC8FEF002EE304 /* checkoutControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39ED821DC8FEF002EE304 /* checkoutControl.swift */; };
+		89C39EDB21DC9105002EE304 /* checkoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EDA21DC9105002EE304 /* checkoutRowView.swift */; };
+		89C39EDD21DC9108002EE304 /* highlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EDC21DC9108002EE304 /* highlightButton.swift */; };
+		89C39EDF21DC915F002EE304 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EDE21DC915F002EE304 /* settings.swift */; };
+		89C39EE121DC91A7002EE304 /* PaymentContextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EE021DC91A7002EE304 /* PaymentContextView.swift */; };
 		89C91047218DFDB2004EC778 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C91046218DFDB2004EC778 /* LoginController.swift */; };
 		89CABB4721D8241600BDC0CC /* icons8-shopping-cart-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 89CABB4621D8241500BDC0CC /* icons8-shopping-cart-50.png */; };
 		89CABB4B21D825AB00BDC0CC /* icons8-deliver-food-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 89CABB4A21D825AA00BDC0CC /* icons8-deliver-food-50.png */; };
@@ -121,7 +126,12 @@
 		89BCC285218E2ADD0078FFFD /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contractsStatus.swift; sourceTree = "<group>"; };
 		89BCC293218E997B0078FFFD /* contractsConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contractsConfirm.swift; sourceTree = "<group>"; };
-		89C14E54218D914A00E56899 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
+		89C39ED621DC8E7B002EE304 /* stripeObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stripeObj.swift; sourceTree = "<group>"; };
+		89C39ED821DC8FEF002EE304 /* checkoutControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutControl.swift; sourceTree = "<group>"; };
+		89C39EDA21DC9105002EE304 /* checkoutRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = checkoutRowView.swift; path = "/Users/Colhodm/Desktop/Cal-Hacks-5.0/Cal-Hacks-TBD/Cal-Hacks-TBD/checkoutRowView.swift"; sourceTree = "<absolute>"; };
+		89C39EDC21DC9108002EE304 /* highlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = highlightButton.swift; path = "/Users/Colhodm/Desktop/Cal-Hacks-5.0/Cal-Hacks-TBD/Cal-Hacks-TBD/highlightButton.swift"; sourceTree = "<absolute>"; };
+		89C39EDE21DC915F002EE304 /* settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
+		89C39EE021DC91A7002EE304 /* PaymentContextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentContextView.swift; sourceTree = "<group>"; };
 		89C91046218DFDB2004EC778 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		89CABB4621D8241500BDC0CC /* icons8-shopping-cart-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-shopping-cart-50.png"; sourceTree = "<group>"; };
 		89CABB4A21D825AA00BDC0CC /* icons8-deliver-food-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-deliver-food-50.png"; sourceTree = "<group>"; };
@@ -218,7 +228,12 @@
 				89756DA4219E3F57009002F5 /* animated_cart.gif */,
 				89C91046218DFDB2004EC778 /* LoginController.swift */,
 				89917CE0218D3CC700861141 /* AppDelegate.swift */,
-				89C14E54218D914A00E56899 /* api.swift */,
+				89C39EDA21DC9105002EE304 /* checkoutRowView.swift */,
+				89C39EDC21DC9108002EE304 /* highlightButton.swift */,
+				89C39ED621DC8E7B002EE304 /* stripeObj.swift */,
+				89C39ED821DC8FEF002EE304 /* checkoutControl.swift */,
+				89C39EDE21DC915F002EE304 /* settings.swift */,
+				89C39EE021DC91A7002EE304 /* PaymentContextView.swift */,
 				89917CE7218D3CC900861141 /* Assets.xcassets */,
 				89917CE9218D3CC900861141 /* LaunchScreen.storyboard */,
 				899305DD21DA00F5000CA9D9 /* icons8-undo-30.png */,
@@ -530,6 +545,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C39EE121DC91A7002EE304 /* PaymentContextView.swift in Sources */,
+				89C39ED721DC8E7B002EE304 /* stripeObj.swift in Sources */,
+				89C39EDB21DC9105002EE304 /* checkoutRowView.swift in Sources */,
 				89BCC294218E997B0078FFFD /* contractsConfirm.swift in Sources */,
 				89917CE3218D3CC700861141 /* ViewController.swift in Sources */,
 				89BCC286218E2ADD0078FFFD /* SignUp.swift in Sources */,
@@ -539,13 +557,15 @@
 				890325E121CF4FC30065183F /* statushub.swift in Sources */,
 				89CBA48021A3F1520024766D /* mySideBarParent.swift in Sources */,
 				89756DA9219E8382009002F5 /* SideMenuTableViewController.swift in Sources */,
-				89C14E55218D914A00E56899 /* api.swift in Sources */,
 				89BCC290218E7ABA0078FFFD /* contractsStatus.swift in Sources */,
 				8951F29621CAC7C000ADC9A6 /* NavigationSearch.swift in Sources */,
 				890325E321CF52E30065183F /* progressHub.swift in Sources */,
+				89C39EDF21DC915F002EE304 /* settings.swift in Sources */,
 				89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */,
+				89C39ED921DC8FEF002EE304 /* checkoutControl.swift in Sources */,
 				89C91047218DFDB2004EC778 /* LoginController.swift in Sources */,
 				89756DAB219E8D67009002F5 /* MainViewController.swift in Sources */,
+				89C39EDD21DC9108002EE304 /* highlightButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

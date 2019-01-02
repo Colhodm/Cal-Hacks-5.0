@@ -1,10 +1,11 @@
 //
-//  BackendAPIAdapter.swift
-//  Standard Integration (Swift)
+//  stripeObj.swift
+//  Cal-Hacks-TBD
 //
-//  Created by Ben Guo on 4/15/16.
-//  Copyright © 2016 Stripe. All rights reserved.
+//  Created by ananya mukerjee on 1/1/19.
+//  Copyright © 2019 Cal-Hacks-5.0. All rights reserved.
 //
+
 import Foundation
 import Stripe
 import Alamofire
@@ -62,6 +63,6 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                     completion(nil, error)
                 }
         }
+    }
+    
 }
-}
-

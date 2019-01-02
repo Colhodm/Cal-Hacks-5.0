@@ -34,9 +34,12 @@ class progressHub: UIViewController {
     }
     @objc func makeGetRequest(){
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_owner_contract")!)
+        var request = URLRequest(url: URL(string: urlbase + "get_owner_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("XXXXX")
+        print(request.timeoutInterval)
+        print("XXXX")
         let parameters = ["userID": userID!] 
         
         do {
@@ -62,6 +65,7 @@ class progressHub: UIViewController {
                 let price = myCurrent!["price"]
                 let temp = validity as! Bool
                 let another = myCurrent!["active"] as! Bool
+          
                 if !temp && another
                 {
                     if !self.myTemp.contains((contract_id!["$oid"] as! String)){

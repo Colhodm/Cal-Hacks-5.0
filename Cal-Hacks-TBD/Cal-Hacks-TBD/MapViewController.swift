@@ -200,7 +200,7 @@ class MapViewController: UIViewController  {
     func makePostRequest(contractID: String){
         
         //create the url with URL
-        var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/accept_contract")!)
+        var request = URLRequest(url: URL(string: urlbase + "accept_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters = ["contractID":contractID, "userID":userid] as! Dictionary<String, String>
@@ -239,9 +239,9 @@ class MapViewController: UIViewController  {
         finalDest = self.finalDest.name
         }
             var sourcefinal2 = ""
-            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_contracts_spatial")!)
+            var request = URLRequest(url: URL(string: urlbase + "get_contracts_spatial")!)
         if finalDest != "" {
-            request = URLRequest(url: URL(string: "http://13.57.239.255:5000/get_contracts_spatial_2")!)
+            request = URLRequest(url: URL(string: urlbase + "get_contracts_spatial_2")!)
         }
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

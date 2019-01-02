@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import GooglePlaces
 public var finaluserid: String!
+public var urlbase = "https://673dab1e.ngrok.io/"
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
@@ -61,7 +62,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func sendLoginRequest(){
             //create the url with URL
             print("DEBUGGING")
-            var request = URLRequest(url: URL(string: "http://13.57.239.255:5000/new_login")!)
+            var request = URLRequest(url: URL(string: urlbase + "new_login")!)
             request.httpMethod = HTTPMethod.post.rawValue
             print("MIDDLE")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
