@@ -8,8 +8,11 @@
 
 import UIKit
 import Alamofire
+import Stripe
+
 
 class forgotPassword: UIViewController, UITextFieldDelegate {
+    
 
     @IBOutlet weak var firstBox: UITextField!
     override func viewDidLoad() {
@@ -51,7 +54,6 @@ class forgotPassword: UIViewController, UITextFieldDelegate {
         }
     }
     
-
     @IBAction func emailCompleted(_ sender: Any) {
         sendForgotRequest(sender: sender as! UITextField)
     }

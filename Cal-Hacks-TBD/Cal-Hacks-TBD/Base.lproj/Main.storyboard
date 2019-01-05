@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jpH-7j-rGW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -59,6 +59,22 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUn-JW-tOa">
+                                <rect key="frame" x="164" y="300" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="gaN-VL-C3M" kind="show" id="LDi-wg-qjn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xx8-Hz-VQv">
+                                <rect key="frame" x="164" y="388" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addCard:" destination="eWg-rZ-0jf" eventType="touchUpInside" id="bAM-Ky-GZg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -749,7 +765,6 @@
                                         </state>
                                         <connections>
                                             <action selector="sendReq:" destination="diG-zi-HYZ" eventType="touchUpInside" id="bda-B3-WhN"/>
-                                            <segue destination="vRH-Lx-jMt" kind="show" id="C4u-Gp-M6j"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -895,6 +910,7 @@
                         <outlet property="order" destination="k0D-CY-zM5" id="zmj-Ar-rLH"/>
                         <outlet property="price" destination="cHv-8s-pD0" id="HjS-TF-zfA"/>
                         <segue destination="Bwf-VK-iya" kind="unwind" identifier="unwindSegueToMap" unwindAction="unwindToVC1WithSegue:" id="lax-mQ-TYK"/>
+                        <segue destination="vRH-Lx-jMt" kind="show" identifier="status" id="c5n-XH-MEY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gvj-2E-5gq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1165,6 +1181,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILp-Ul-RcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8652" y="-1653.8230884557722"/>
+        </scene>
+        <!--Checkout View Controller-->
+        <scene sceneID="YER-UM-U2Z">
+            <objects>
+                <viewController id="gaN-VL-C3M" customClass="CheckoutViewController" customModule="Cal_Hacks_TBD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vBO-bF-FEm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMv-ss-YZB" customClass="CheckoutRowView" customModule="Cal_Hacks_TBD" customModuleProvider="target">
+                                <rect key="frame" x="67" y="443" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QkQ-vq-2Is" customClass="CheckoutRowView" customModule="Cal_Hacks_TBD" customModuleProvider="target">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xhq-or-ZMj" customClass="CheckoutRowView" customModule="Cal_Hacks_TBD" customModuleProvider="target">
+                                <rect key="frame" x="67" y="98" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1MB-eU-ikE" customClass="BuyButton" customModule="Cal_Hacks_TBD" customModuleProvider="target">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Efl-fw-SG7"/>
+                    </view>
+                    <connections>
+                        <outlet property="buyButton" destination="1MB-eU-ikE" id="td1-gr-edP"/>
+                        <outlet property="paymentRow" destination="JMv-ss-YZB" id="eaa-vf-7ac"/>
+                        <outlet property="shippingRow" destination="Xhq-or-ZMj" id="lay-CB-trV"/>
+                        <outlet property="totalRow" destination="QkQ-vq-2Is" id="Ggp-6V-Dc3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mmh-9t-dPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1719" y="-645"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OeG-OF-gWg">
@@ -1604,6 +1663,6 @@
         <image name="shoppingcart.png" width="299" height="168"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6sU-Ha-Jwu"/>
+        <segue reference="c5n-XH-MEY"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import GooglePlaces
 public var finaluserid: String!
-public var urlbase = "https://673dab1e.ngrok.io/"
+public var urlbase = "https://52700c07.ngrok.io/"
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
@@ -46,19 +46,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @objc func applicationDidBecomeActive() {
-        // Update your view controller
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-        self.logInBut.layer.cornerRadius = 10
-        self.logInBut.clipsToBounds = true
-        self.logInBut.titleLabel?.adjustsFontSizeToFitWidth = true
-        print(firstBox)
-        print(secondBox)
-        print("finished running")
-        
-        
-    }
+//    @objc func applicationDidBecomeActive() {
+//        // Update your view controller
+//        self.locationManager.requestWhenInUseAuthorization()
+//        self.locationManager.startUpdatingLocation()
+//        self.logInBut.layer.cornerRadius = 10
+//        self.logInBut.clipsToBounds = true
+//        self.logInBut.titleLabel?.adjustsFontSizeToFitWidth = true
+//        print(firstBox)
+//        print(secondBox)
+//        print("finished running")
+//
+//
+//    }
     func sendLoginRequest(){
             //create the url with URL
             print("DEBUGGING")
@@ -70,6 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let password = secondBox.text
         let parameters = ["name":name!, "password": password!] as! Dictionary<String, String>
         print("SENT")
+        print(parameters)
         
         
         do {
@@ -97,21 +98,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }
     }
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationDidBecomeActive),
-                                               name: .UIApplicationDidBecomeActive, // UIApplication.didBecomeActiveNotification for swift 4.2+
-            object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(applicationDidBecomeActive),
+//                                               name: .UIApplicationDidBecomeActive, // UIApplication.didBecomeActiveNotification for swift 4.2+
+//            object: nil)
         print("TESTING1")
         super.viewDidLoad()
         print("TESTING2")
-        firstBox.delegate = self
-        secondBox.delegate = self
+        firstBox?.delegate = self
+        secondBox?.delegate = self
         self.locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        self.logInBut.layer.cornerRadius = 10
-        self.logInBut.clipsToBounds = true
-        self.logInBut.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.logInBut?.layer.cornerRadius = 10
+        self.logInBut?.clipsToBounds = true
+        self.logInBut?.titleLabel?.adjustsFontSizeToFitWidth = true
         print("I FINISHED LOADING")
         
         // Do any additional setup after loading the view, typically from a nib.

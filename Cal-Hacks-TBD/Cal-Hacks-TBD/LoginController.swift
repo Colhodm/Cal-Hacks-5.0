@@ -9,7 +9,37 @@
 import UIKit
 import Alamofire
 import GooglePlaces
-class LoginController: UIViewController, UITextFieldDelegate {
+import Stripe
+var methodOfPayment = false
+
+class LoginController: UIViewController, UITextFieldDelegate ,STPAddCardViewControllerDelegate,STPPaymentMethodsViewControllerDelegate {
+    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
+        dismiss(animated: true, completion: nil)
+
+    }
+    
+    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+                paymentMethodsViewController.navigationController?.popViewController(animated: true)
+
+    }
+    
+    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+                dismiss(animated: true, completion: nil)
+    }
+    
+    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreateToken token: STPToken, completion: @escaping STPErrorBlock) {
+        // TODO FIGURE OUT HOW TO MAKE THIS SEGUE ONCE YOU SUCCESFULLY ADD A PAYMENT METHOD
+        methodOfPayment = true
+        print("DOING SOME STUFF")
+        dismiss(animated: true, completion: nil)
+        sendSubmitRequest()
+        performSegue(withIdentifier: "status", sender: self)
+        
+
+    }
     var locationManager = CLLocationManager()
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var destination: UITextField!
@@ -36,7 +66,31 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
    
     @IBAction func sendReq(_ sender: Any) {
-        sendSubmitRequest()
+        methodOfPayment = true
+        if !methodOfPayment{
+            // Setup add card view controller
+            let addCardViewController = STPAddCardViewController()
+            addCardViewController.delegate = self
+            
+            // Present add card view controller
+            let navigationController = UINavigationController(rootViewController: addCardViewController)
+            present(navigationController, animated: true)
+        }
+        if methodOfPayment{
+            let config = STPPaymentConfiguration()
+            config.additionalPaymentMethods = .all
+            config.requiredBillingAddressFields = .none
+            config.appleMerchantIdentifier = "dummy-merchant-id"
+            let customerContext = STPCustomerContext()
+
+            let viewController = STPPaymentMethodsViewController(configuration: config,
+                                                                 theme: .default(),
+                                                                 customerContext: customerContext,
+                                                                 delegate: self)
+            let navigationController = UINavigationController(rootViewController: viewController)
+            navigationController.navigationBar.stp_theme = .default()
+            present(navigationController, animated: true, completion: nil)
+        }
     }
     
     func sendSubmitRequest(){

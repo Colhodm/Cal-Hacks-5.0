@@ -48,10 +48,12 @@ class CheckoutRowView: UIView {
     fileprivate let topSeparator = UIView()
     fileprivate let bottomSeparator = UIView()
     
-    convenience init(title: String, detail: String, tappable: Bool = true, theme: STPTheme) {
-        self.init()
-        self.title = title
-        self.detail = detail
+
+    override func layoutSubviews() {
+        var theme = STPTheme.default()
+        self.title = "title"
+        self.detail = "detail"
+        let tappable = true
         
         self.backgroundColor = theme.secondaryBackgroundColor
         self.backgroundView.addTarget(self, action: #selector(didTap), for: .touchUpInside)
@@ -81,9 +83,6 @@ class CheckoutRowView: UIView {
         theme.primaryBackgroundColor.getRed(&red, green: nil, blue: nil, alpha: nil)
         self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
         self.addSubview(self.activityIndicator)
-    }
-    
-    override func layoutSubviews() {
         self.topSeparator.frame = CGRect(x: 0, y: -1, width: self.bounds.width, height: 1)
         self.backgroundView.frame = self.bounds
         self.titleLabel.frame = self.bounds.offsetBy(dx: 10, dy: 0)
