@@ -46,7 +46,6 @@
 		89BCC290218E7ABA0078FFFD /* contractsStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */; };
 		89BCC294218E997B0078FFFD /* contractsConfirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BCC293218E997B0078FFFD /* contractsConfirm.swift */; };
 		89C39ED721DC8E7B002EE304 /* stripeObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39ED621DC8E7B002EE304 /* stripeObj.swift */; };
-		89C39ED921DC8FEF002EE304 /* checkoutControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39ED821DC8FEF002EE304 /* checkoutControl.swift */; };
 		89C39EDB21DC9105002EE304 /* checkoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EDA21DC9105002EE304 /* checkoutRowView.swift */; };
 		89C39EDD21DC9108002EE304 /* highlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EDC21DC9108002EE304 /* highlightButton.swift */; };
 		89C39EDF21DC915F002EE304 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C39EDE21DC915F002EE304 /* settings.swift */; };
@@ -127,7 +126,6 @@
 		89BCC28F218E7ABA0078FFFD /* contractsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contractsStatus.swift; sourceTree = "<group>"; };
 		89BCC293218E997B0078FFFD /* contractsConfirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contractsConfirm.swift; sourceTree = "<group>"; };
 		89C39ED621DC8E7B002EE304 /* stripeObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stripeObj.swift; sourceTree = "<group>"; };
-		89C39ED821DC8FEF002EE304 /* checkoutControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkoutControl.swift; sourceTree = "<group>"; };
 		89C39EDA21DC9105002EE304 /* checkoutRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = checkoutRowView.swift; path = "/Users/Colhodm/Desktop/Cal-Hacks-5.0/Cal-Hacks-TBD/Cal-Hacks-TBD/checkoutRowView.swift"; sourceTree = "<absolute>"; };
 		89C39EDC21DC9108002EE304 /* highlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = highlightButton.swift; path = "/Users/Colhodm/Desktop/Cal-Hacks-5.0/Cal-Hacks-TBD/Cal-Hacks-TBD/highlightButton.swift"; sourceTree = "<absolute>"; };
 		89C39EDE21DC915F002EE304 /* settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				89C39EDA21DC9105002EE304 /* checkoutRowView.swift */,
 				89C39EDC21DC9108002EE304 /* highlightButton.swift */,
 				89C39ED621DC8E7B002EE304 /* stripeObj.swift */,
-				89C39ED821DC8FEF002EE304 /* checkoutControl.swift */,
 				89C39EDE21DC915F002EE304 /* settings.swift */,
 				89C39EE021DC91A7002EE304 /* PaymentContextView.swift */,
 				89917CE7218D3CC900861141 /* Assets.xcassets */,
@@ -562,7 +559,6 @@
 				890325E321CF52E30065183F /* progressHub.swift in Sources */,
 				89C39EDF21DC915F002EE304 /* settings.swift in Sources */,
 				89917CE1218D3CC700861141 /* AppDelegate.swift in Sources */,
-				89C39ED921DC8FEF002EE304 /* checkoutControl.swift in Sources */,
 				89C91047218DFDB2004EC778 /* LoginController.swift in Sources */,
 				89756DAB219E8D67009002F5 /* MainViewController.swift in Sources */,
 				89C39EDD21DC9108002EE304 /* highlightButton.swift in Sources */,

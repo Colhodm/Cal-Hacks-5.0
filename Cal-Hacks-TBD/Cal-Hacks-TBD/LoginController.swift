@@ -12,34 +12,42 @@ import GooglePlaces
 import Stripe
 var methodOfPayment = false
 
-class LoginController: UIViewController, UITextFieldDelegate ,STPAddCardViewControllerDelegate,STPPaymentMethodsViewControllerDelegate {
-    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
-        dismiss(animated: true, completion: nil)
+class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextDelegate {
+    let stripePublishableKey = STPPaymentConfiguration.shared().publishableKey
+    
+    let backendBaseURL = urlbase
+    
+    // 3) Optionally, to enable Apple Pay, follow the instructions at https://stripe.com/docs/mobile/apple-pay
+    // to create an Apple Merchant ID. Replace nil on the line below with it (it looks like merchant.com.yourappname).
+    let appleMerchantID: String? = nil
+    
+    // These values will be shown to the user when they purchase with Apple Pay.
+    let companyName = "Emoji Apparel"
+    let paymentCurrency = "usd"
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
+    var paymentInProgress: Bool = false {
+        didSet {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                if self.paymentInProgress {
+                    self.activityIndicator.startAnimating()
+                    self.activityIndicator.alpha = 1
+                    //self.buyButton.alpha = 0
+                }
+                else {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.alpha = 0
+                    //self.buyButton.alpha = 1
+                }
+            }, completion: nil)
+        }
     }
     
-    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
-                paymentMethodsViewController.navigationController?.popViewController(animated: true)
-
-    }
+    var paymentContext: STPPaymentContext?
     
-    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
-                dismiss(animated: true, completion: nil)
-    }
     
-    func addCardViewControllerDidCancel(_ addCardViewController: STPAddCardViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-    func addCardViewController(_ addCardViewController: STPAddCardViewController, didCreateToken token: STPToken, completion: @escaping STPErrorBlock) {
-        // TODO FIGURE OUT HOW TO MAKE THIS SEGUE ONCE YOU SUCCESFULLY ADD A PAYMENT METHOD
-        methodOfPayment = true
-        print("DOING SOME STUFF")
-        dismiss(animated: true, completion: nil)
-        sendSubmitRequest()
-        performSegue(withIdentifier: "status", sender: self)
-        
 
-    }
+    
     var locationManager = CLLocationManager()
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var destination: UITextField!
@@ -63,34 +71,86 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPAddCardViewCont
         textField.resignFirstResponder()
         return true
     }
+    func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            // Need to assign to _ because optional binding loses @discardableResult value
+            // https://bugs.swift.org/browse/SR-1681
+            _ = self.navigationController?.popViewController(animated: true)
+        })
+        let retry = UIAlertAction(title: "Retry", style: .default, handler: { action in
+            self.paymentContext?.retryLoading()
+        })
+        alertController.addAction(cancel)
+        alertController.addAction(retry)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func paymentContextDidChange(_ paymentContext: STPPaymentContext) {
+        print("SOMETHING CHANGED")
+        //        self.paymentRow.loading = paymentContext.loading
+        //        if let paymentMethod = paymentContext.selectedPaymentMethod {
+        //            self.paymentRow.detail = paymentMethod.label
+        //        }
+        //        else {
+        //            self.paymentRow.detail = "Select Payment"
+        //        }
+        //        if let shippingMethod = paymentContext.selectedShippingMethod {
+        //            self.shippingRow.detail = shippingMethod.label
+        //        }
+        //        else {
+        //            self.shippingRow.detail = "Enter \(self.shippingString) Info"
+        //        }
+        //        self.totalRow.detail = self.numberFormatter.string(from: NSNumber(value: Float(self.paymentContext.paymentAmount)/100))!
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
+        print("just requested my backend")
+        MyAPIClient.sharedClient.completeCharge(paymentResult,
+                                                amount: self.paymentContext?.paymentAmount ?? 5,
+                                                shippingAddress: self.paymentContext?.shippingAddress,
+                                                shippingMethod: self.paymentContext?.selectedShippingMethod,
+                                                completion: completion)
+    }
+    
+    func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
+        self.paymentInProgress = false
+        let title: String
+        let message: String
+        switch status {
+        case .error:
+            title = "Error"
+            message = error?.localizedDescription ?? ""
+        case .success:
+            title = "Success"
+            message = "You ordered a \(self.myTitle.text!) with a description of \(self.descriptionOfQuery.text!) for a price of \(self.price.text!) from \(self.finalDest)!"
+        case .userCancellation:
+            return
+        }
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
    
     @IBAction func sendReq(_ sender: Any) {
-        methodOfPayment = true
+        print(sender)
         if !methodOfPayment{
-            // Setup add card view controller
-            let addCardViewController = STPAddCardViewController()
-            addCardViewController.delegate = self
-            
-            // Present add card view controller
-            let navigationController = UINavigationController(rootViewController: addCardViewController)
-            present(navigationController, animated: true)
-        }
-        if methodOfPayment{
-            let config = STPPaymentConfiguration()
-            config.additionalPaymentMethods = .all
-            config.requiredBillingAddressFields = .none
-            config.appleMerchantIdentifier = "dummy-merchant-id"
-            let customerContext = STPCustomerContext()
+        paymentContext?.presentPaymentMethodsViewController()
+        let temp = sender as! UIButton
+        temp.setTitle("Finish", for: .normal)
+        temp.titleLabel?.font.withSize(15)
 
-            let viewController = STPPaymentMethodsViewController(configuration: config,
-                                                                 theme: .default(),
-                                                                 customerContext: customerContext,
-                                                                 delegate: self)
-            let navigationController = UINavigationController(rootViewController: viewController)
-            navigationController.navigationBar.stp_theme = .default()
-            present(navigationController, animated: true, completion: nil)
+        methodOfPayment = true
+        } else{
+            paymentContext?.requestPayment()
         }
+        
     }
     
     func sendSubmitRequest(){
@@ -127,6 +187,7 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPAddCardViewCont
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
         price.delegate = self
         destination.delegate = self
         self.locationManager.delegate = self
@@ -139,6 +200,27 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPAddCardViewCont
         self.locationManager.startUpdatingLocation()
         destination.addTarget(self, action: #selector(searchRecords(textField:)), for: .editingChanged)
         self.order.alpha = 0.5
+        MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
+        let config = STPPaymentConfiguration.shared()
+        config.publishableKey = self.stripePublishableKey
+        config.appleMerchantIdentifier = self.appleMerchantID
+        config.companyName = self.companyName
+        
+        // Create card sources instead of card tokens
+        config.createCardSources = false;
+
+        let customerContext = STPCustomerContext(keyProvider: MyAPIClient.sharedClient)
+        let paymentContext = STPPaymentContext(customerContext: customerContext)
+        let userInformation = STPUserInformation()
+        paymentContext.prefilledInformation = userInformation
+        paymentContext.paymentAmount = Int(self.price.text ?? "0") ?? 0
+        paymentContext.paymentCurrency = self.paymentCurrency
+        self.paymentContext = paymentContext
+        self.paymentContext?.hostViewController = self
+        self.paymentContext?.delegate = self
+
+
+
 
         // Do any additional setup after loading the view, typically from a nib.
     }

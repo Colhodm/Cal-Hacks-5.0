@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //GMSPlacesClient.provideAPIKey("AIzaSyAsszS58jyvUp_-Q2HaBofbOIKGdarTMKc");
         GMSServices.provideAPIKey("AIzaSyAsszS58jyvUp_-Q2HaBofbOIKGdarTMKc");
         GADMobileAds.configure(withApplicationID: "ca-app-pub-3940256099942544/2934735716")
-        STPPaymentConfiguration.shared().publishableKey = "pk_live_upAjfzXr2mJp2Yt9amvcLm4L"
+        STPPaymentConfiguration.shared().publishableKey = "pk_test_4gfNKWh57OeZteDkHtCGH7Bc"
 
             // do any other necessary launch configuration        
         return true

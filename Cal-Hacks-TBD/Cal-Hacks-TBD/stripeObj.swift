@@ -27,17 +27,23 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
                         shippingAddress: STPAddress?,
                         shippingMethod: PKShippingMethod?,
                         completion: @escaping STPErrorBlock) {
+        print("TRYING TO VERIFY WITH BACKEND THAT I CAN DO TRANSACTION")
         let url = self.baseURL.appendingPathComponent("charge")
-        var params: [String: Any] = [
+        var params = [
             "source": result.source.stripeID,
-            "amount": amount,
-            "metadata": [
-                // example-ios-backend allows passing metadata through to Stripe
-                "charge_request_id": "B3E611D1-5FA1-4410-9CEC-00958A5126CB",
-            ],
-            ]
+            "amount": amount
+            ] as [String : Any]
         params["shipping"] = STPAddress.shippingInfoForCharge(with: shippingAddress, shippingMethod: shippingMethod)
-        Alamofire.request(url, method: .post, parameters: params)
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        Alamofire.request(request)
             .validate(statusCode: 200..<300)
             .responseString { response in
                 switch response.result {
@@ -51,15 +57,28 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
         let url = self.baseURL.appendingPathComponent("ephemeral_keys")
-        Alamofire.request(url, method: .post, parameters: [
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters = [
             "api_version": apiVersion,
-            ])
-            .validate(statusCode: 200..<300)
-            .responseJSON { responseJSON in
+            "userID": finaluserid,
+            ]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        Alamofire.request(request).validate(statusCode: 200..<300).responseJSON { responseJSON in
                 switch responseJSON.result {
                 case .success(let json):
+                    print("HEREZZZZZZ")
+                    //let myResponse = responseJSON.value as? Dictionary<String,Any>
+                    //print(myResponse)
                     completion(json as? [String: AnyObject], nil)
                 case .failure(let error):
+                    print("TEET FAILURE")
                     completion(nil, error)
                 }
         }
