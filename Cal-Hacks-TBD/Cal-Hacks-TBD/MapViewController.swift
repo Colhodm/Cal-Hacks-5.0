@@ -18,6 +18,7 @@ class MapViewController: UIViewController  {
     var placesClient: GMSPlacesClient!
     var userid = finaluserid
     var myArray = [String]()
+
     var querylen = 4
     var myPlacesSoFar = [GooglePlaces.GMSPlace]()
     var placeNames = [String : GooglePlaces.GMSPlace]()
@@ -26,7 +27,7 @@ class MapViewController: UIViewController  {
 
     @IBOutlet weak var myBottom: UIView!
     
-    @IBOutlet weak var deliver: UIButton!
+    //@IBOutlet weak var deliver: UIButton!
     
     @IBOutlet weak var myProfile: UIButton!
     @IBOutlet weak var mySearch: UIView!
@@ -178,6 +179,8 @@ class MapViewController: UIViewController  {
 
         mapView.moveCamera(cameraUpdate)
         mapView.moveCamera(GMSCameraUpdate.zoom(to: 16))
+        mapView.center = self.view.center
+
         locationManager.startUpdatingLocation()
         makeGetRequest()
         for gesture in mapView.gestureRecognizers! {
@@ -185,7 +188,7 @@ class MapViewController: UIViewController  {
         }
         self.navigationController?.isToolbarHidden = true
         self.navigationItem.hidesBackButton = true
-        self.deliver.alpha = 0.5
+        //self.deliver.alpha = 0.5
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -195,7 +198,11 @@ class MapViewController: UIViewController  {
     
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("wrapperTimed"), userInfo: nil, repeats: true)
+    }
+    @objc func wrapperTimed(){
+        makeGetRequest()
+        updateLocation()
     }
     func makePostRequest(contractID: String){
         
@@ -203,7 +210,34 @@ class MapViewController: UIViewController  {
         var request = URLRequest(url: URL(string: urlbase + "accept_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let parameters = ["contractID":contractID, "userID":userid] as! Dictionary<String, String>
+        let myCoords = (locationManager.location?.coordinate)!
+        let driverLat = myCoords.latitude.description
+        let driverLon = myCoords.longitude.description
+        let parameters = ["contractID":contractID, "userID":finaluserid,"driverLat":driverLat,"driverLon":driverLon] as! Dictionary<String, String>
+        
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        Alamofire.request(request).responseJSON { (response) in
+            
+        }
+        
+    }
+    
+    func updateLocation(){
+        
+        //create the url with URL
+        var request = URLRequest(url: URL(string: urlbase + "update_driver_position")!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let myCoords = (locationManager.location?.coordinate)!
+        let driverLat = myCoords.latitude.description
+        let driverLon = myCoords.longitude.description
+        let parameters = [ "userID":finaluserid,"driverLat":driverLat,"driverLon":driverLon] as! Dictionary<String, Any>
         
         
         do {
@@ -232,7 +266,7 @@ class MapViewController: UIViewController  {
     
     
     // this function makes the get request to the backend to write some information
-    @objc func makeGetRequest(){
+    func makeGetRequest(){
             //create the url with URL
         var finalDest = ""
         if self.finalDest != nil{

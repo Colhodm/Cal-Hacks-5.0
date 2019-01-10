@@ -59,7 +59,7 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
     var placeNames = [String : GooglePlaces.GMSPlace]()
     var finalDest = ""
     var logIn = false
-    @IBOutlet weak var order: UIButton!
+    //@IBOutlet weak var order: UIButton!
     
 
     
@@ -110,6 +110,8 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
         print("just requested my backend")
+        // instead of just calling complete charge we add the payment context to a global dictionary with contractid: paymentcontext
+        // as soon as they accept the contract pop it from dictionary and call the function below..
         MyAPIClient.sharedClient.completeCharge(paymentResult,
                                                 amount: self.paymentContext?.paymentAmount ?? 5,
                                                 shippingAddress: self.paymentContext?.shippingAddress,
@@ -148,6 +150,8 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
 
         methodOfPayment = true
         } else{
+            // instead of this need to keep contract and when the user confirms it the payment finally goes through
+            sendSubmitRequest()
             paymentContext?.requestPayment()
         }
         
@@ -199,7 +203,6 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
         destination.addTarget(self, action: #selector(searchRecords(textField:)), for: .editingChanged)
-        self.order.alpha = 0.5
         MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
         let config = STPPaymentConfiguration.shared()
         config.publishableKey = self.stripePublishableKey

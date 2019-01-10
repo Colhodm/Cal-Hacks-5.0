@@ -112,7 +112,7 @@ class PossibleContracts: UIViewController {
 
 class HeadlineTableViewCell: UITableViewCell{
     @IBOutlet weak var myImage: UIImageView!
-    
+    var myContractID: String?
     @IBOutlet weak var myAmount: UILabel!
   
     @IBOutlet weak var myReqItem: UILabel!
@@ -128,6 +128,7 @@ extension PossibleContracts: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
         if (self.myTemp.count > 0){
+            cell.myContractID = myTemp[indexPath.row]
             cell.myReqName?.text = myTempBackup[indexPath.row]
             cell.myAmount?.text = "Earn " + "$" + myTempPrices[indexPath.row]
             cell.myReqItem?.text = myTempDescription[indexPath.row]

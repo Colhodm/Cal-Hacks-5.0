@@ -11,10 +11,12 @@ import Alamofire
 class progressHub: UIViewController {
     var contractID = ""
     var userID = finaluserid
-
+    var clickedContractID = ""
     var myTemp = [String]()
     var myTempBackup = [String]()
     var myTempPrices = [String]()
+    var myTempDescription = [String]()
+
     var timer = Timer()
 
     @IBOutlet weak var myOptions: UITableView!
@@ -64,6 +66,8 @@ class progressHub: UIViewController {
                 let validity = myCurrent!["valid"]
                 let price = myCurrent!["price"]
                 let temp = validity as! Bool
+                let description = myCurrent!["description"]
+
                 let another = myCurrent!["active"] as! Bool
           
                 if !temp && another
@@ -72,6 +76,7 @@ class progressHub: UIViewController {
                     self.myTemp.append(contract_id!["$oid"] as! String)
                     let title = myCurrent!["title"]
                     self.myTempBackup.append(title as! String)
+                    self.myTempDescription.append(description as! String)
                     self.myTempPrices.append(String(price as! Int!))
                     }
                 }
@@ -85,6 +90,10 @@ class progressHub: UIViewController {
         performSegue(withIdentifier: "BackToMap", sender: self)
 
     }
+    
+    @IBAction func unwindFromDrivers(segue:UIStoryboardSegue){
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -94,6 +103,12 @@ class progressHub: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? trackDriver
+        {
+            vc.contractid = self.clickedContractID
+        }
+    }
 
 }
 
@@ -105,12 +120,25 @@ extension progressHub: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
         if (self.myTemp.count > 0){
+            cell.myContractID = myTemp[indexPath.row]
+            print(cell.myContractID)
+            print("XXXX")
             cell.myReqName?.text = myTempBackup[indexPath.row]
             cell.myAmount?.text = "Earn " + "$" + myTempPrices[indexPath.row]
+            cell.myReqItem?.text = myTempDescription[indexPath.row]
+
+            
         }
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        
+        let cell = tableView.cellForRow(at: indexPath!)! as! HeadlineTableViewCell
+        self.clickedContractID = cell.myContractID!
+        performSegue(withIdentifier: "toTrack", sender: self)
     }
 }

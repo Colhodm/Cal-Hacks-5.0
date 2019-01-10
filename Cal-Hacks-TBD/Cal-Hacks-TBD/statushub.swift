@@ -17,6 +17,8 @@ class statushub: UIViewController {
     var another = [String]()
     var anotherBackup = [String]()
     var myBackupPrices = [String]()
+    var anotherDescription = [String]()
+
 
     @IBOutlet weak var myOptions: UITableView!
     override func viewDidLoad() {
@@ -66,12 +68,14 @@ class statushub: UIViewController {
                 let validity = myCurrent!["valid"]
                 let price = myCurrent!["price"]
                 let temp = validity as! Bool
+                let description = myCurrent!["description"]
                 if temp
                 {
                     if !self.another.contains((contract_id!["$oid"] as! String)){
                     self.another.append(contract_id!["$oid"] as! String)
                     let title = myCurrent!["title"]
                     self.anotherBackup.append(title as! String)
+                    self.anotherDescription.append(description as! String)
                     self.myBackupPrices.append(String(price as! Int!))
                     }
                     // Don't need this else currently in this viewcontroller
@@ -98,7 +102,10 @@ extension statushub: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
             if (self.anotherBackup.count > 0){
+                cell.myContractID = another[indexPath.row]
                 cell.myReqName?.text = anotherBackup[indexPath.row]
+                // TODO ADD THE DSCRIPTION TO THIS
+                cell.myReqItem?.text = anotherDescription[indexPath.row]
                 cell.myAmount?.text = "Earn " + "$" + myBackupPrices[indexPath.row]
             }
         return cell

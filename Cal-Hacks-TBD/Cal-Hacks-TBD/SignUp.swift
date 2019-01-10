@@ -15,6 +15,7 @@ class SignUp: UIViewController, UITextFieldDelegate {
     var userid = ""
 
     @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var phoneNumber: UITextField!
     
     @IBOutlet weak var submitBut: UIButton!
     @IBOutlet weak var screenid: UITextField!
@@ -39,7 +40,7 @@ class SignUp: UIViewController, UITextFieldDelegate {
         let password = self.password.text
         let screenid = self.screenid.text
 
-        let parameters = ["name":name!, "password": password!,"screenid": screenid] as! Dictionary<String, String>
+        let parameters = ["name":name!, "password": password!,"screenid": screenid,"phone":phoneNumber.text!] as! Dictionary<String, String>
         
         
         do {

@@ -55,7 +55,7 @@ class NavigationSearch: UIViewController {
             if self.querylen <= Destination.text!.count{
                 filterArray()
             } else {
-                
+                print("does this every run")
                 placeAutocomplete()
                 
             }
@@ -66,7 +66,6 @@ class NavigationSearch: UIViewController {
         }
         
     }
-    
     func filterArray(){
         var temp = [String]()
         for restaurant in myArray{
@@ -128,6 +127,7 @@ extension NavigationSearch: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("creating entries in the table")
         let temp = "myArray"
         var cell = tableView.dequeueReusableCell(withIdentifier: temp)
         if cell == nil{
