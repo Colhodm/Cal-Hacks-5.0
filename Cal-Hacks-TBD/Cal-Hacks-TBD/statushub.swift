@@ -41,7 +41,6 @@ class statushub: UIViewController {
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let parameters = ["userID": userID!]
-        print(userID!)
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -51,9 +50,6 @@ class statushub: UIViewController {
         }
         Alamofire.request(request).responseJSON { (response) in
             let names = response.value! as? [Any]
-            print("XXXXXXX")
-            print(names)
-            print("XXXXXX")
             if names == nil{
                 return
             }

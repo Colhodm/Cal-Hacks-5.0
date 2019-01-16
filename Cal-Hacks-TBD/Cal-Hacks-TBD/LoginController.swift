@@ -11,7 +11,6 @@ import Alamofire
 import GooglePlaces
 import Stripe
 var methodOfPayment = false
-
 class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextDelegate {
     let stripePublishableKey = STPPaymentConfiguration.shared().publishableKey
     
@@ -59,6 +58,7 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
     var placeNames = [String : GooglePlaces.GMSPlace]()
     var finalDest = ""
     var logIn = false
+    var mostRecentContractID = ""
     //@IBOutlet weak var order: UIButton!
     
 
@@ -112,11 +112,13 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
         print("just requested my backend")
         // instead of just calling complete charge we add the payment context to a global dictionary with contractid: paymentcontext
         // as soon as they accept the contract pop it from dictionary and call the function below..
+        
         MyAPIClient.sharedClient.completeCharge(paymentResult,
-                                                amount: self.paymentContext?.paymentAmount ?? 5,
+                                                amount: self.paymentContext?.paymentAmount ?? 5, contractID: self.mostRecentContractID,
                                                 shippingAddress: self.paymentContext?.shippingAddress,
                                                 shippingMethod: self.paymentContext?.selectedShippingMethod,
                                                 completion: completion)
+        // TODO write some code to control and ensure that this can not charge the same contract twice
     }
     
     func paymentContext(_ paymentContext: STPPaymentContext, didFinishWith status: STPPaymentStatus, error: Error?) {
@@ -152,7 +154,6 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
         } else{
             // instead of this need to keep contract and when the user confirms it the payment finally goes through
             sendSubmitRequest()
-            paymentContext?.requestPayment()
         }
         
     }
@@ -172,7 +173,7 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
         let tempone = quickone
             + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
-        let parameters = ["destination":final, "price": price.text!,"userid":userid!,"source":sourcefinal,"description":descriptionOfQuery.text!,"title":myTitle.text!] as! Dictionary<String, String>
+        let parameters = ["destination":final, "price": price.text!,"userid":userid!,"source":sourcefinal,"description":descriptionOfQuery.text!,"title":myTitle.text!,"orderToken":token] as! Dictionary<String, String>
         
         
         do {
@@ -182,10 +183,16 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
             print(error.localizedDescription)
         }
             Alamofire.request(request).responseJSON { (response) in
-                if response.description == "You were right!"{
-                    //self.userid = Int(response.description)!
-                    self.performSegue(withIdentifier: "victory", sender: self)
+                if response.value == nil{
+                    print("returned right here")
+                    return
                 }
+                let parameters = response.value! as? String
+                if parameters == nil{
+                    return
+                }
+                self.mostRecentContractID = parameters!
+                self.paymentContext?.requestPayment()
                 // have it flash notification that ur atempt was not correct
             }
     }
@@ -351,4 +358,5 @@ extension LoginController: UITableViewDelegate,UITableViewDataSource {
     
     
 }
+
 

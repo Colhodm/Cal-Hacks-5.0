@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import Alamofire
 class progressHub: UIViewController {
     var contractID = ""
@@ -16,6 +17,7 @@ class progressHub: UIViewController {
     var myTempBackup = [String]()
     var myTempPrices = [String]()
     var myTempDescription = [String]()
+    var myPhone: String?
 
     var timer = Timer()
 
@@ -28,6 +30,8 @@ class progressHub: UIViewController {
         self.myOptions.isScrollEnabled = true;
         scheduledTimerWithTimeInterval()
         self.myOptions.reloadData()
+       // UNUserNotificationCenter.current().delegate = self
+
         // Do any additional setup after loading the view.
     }
     func scheduledTimerWithTimeInterval(){
@@ -39,9 +43,6 @@ class progressHub: UIViewController {
         var request = URLRequest(url: URL(string: urlbase + "get_owner_contract")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        print("XXXXX")
-        print(request.timeoutInterval)
-        print("XXXX")
         let parameters = ["userID": userID!] 
         
         do {
@@ -67,7 +68,7 @@ class progressHub: UIViewController {
                 let price = myCurrent!["price"]
                 let temp = validity as! Bool
                 let description = myCurrent!["description"]
-
+                self.myPhone = myCurrent!["phoneNumber"] as! String!
                 let another = myCurrent!["active"] as! Bool
           
                 if !temp && another
@@ -107,6 +108,7 @@ class progressHub: UIViewController {
         if let vc = segue.destination as? trackDriver
         {
             vc.contractid = self.clickedContractID
+            vc.myPhone = self.myPhone
         }
     }
 
@@ -121,8 +123,6 @@ extension progressHub: UITableViewDelegate,UITableViewDataSource {
         let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
         if (self.myTemp.count > 0){
             cell.myContractID = myTemp[indexPath.row]
-            print(cell.myContractID)
-            print("XXXX")
             cell.myReqName?.text = myTempBackup[indexPath.row]
             cell.myAmount?.text = "Earn " + "$" + myTempPrices[indexPath.row]
             cell.myReqItem?.text = myTempDescription[indexPath.row]
@@ -142,3 +142,16 @@ extension progressHub: UITableViewDelegate,UITableViewDataSource {
         performSegue(withIdentifier: "toTrack", sender: self)
     }
 }
+
+//
+//extension progressHub:UNUserNotificationCenterDelegate{
+//    func userNotificationCenter(
+//        _ center: UNUserNotificationCenter,
+//        didReceive response: UNNotificationResponse,
+//        withCompletionHandler completionHandler: @escaping () -> Void) {
+//        print("some update occured here")
+//
+//        // 4
+//        completionHandler()
+//    }
+//}

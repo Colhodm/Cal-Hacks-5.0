@@ -23,13 +23,14 @@ class MyAPIClient: NSObject, STPEphemeralKeyProvider {
     }
     
     func completeCharge(_ result: STPPaymentResult,
-                        amount: Int,
+                        amount: Int,contractID: String,
                         shippingAddress: STPAddress?,
                         shippingMethod: PKShippingMethod?,
                         completion: @escaping STPErrorBlock) {
         print("TRYING TO VERIFY WITH BACKEND THAT I CAN DO TRANSACTION")
         let url = self.baseURL.appendingPathComponent("charge")
         var params = [
+            "contractID": contractID,
             "source": result.source.stripeID,
             "amount": amount
             ] as [String : Any]

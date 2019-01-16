@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 import GooglePlaces
 public var finaluserid: String!
-public var urlbase = "https://52700c07.ngrok.io/"
+public var urlbase = "https://f0f5d34e.ngrok.io/"
+public var personalPhone: String!
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstBox: UITextField!
     var locationManager = CLLocationManager()
@@ -68,7 +69,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let name = firstBox.text
             let password = secondBox.text
-        let parameters = ["name":name!, "password": password!] as! Dictionary<String, String>
+        if token == nil{
+            token = ""
+        }
+        let parameters = ["name":name!, "password": password!,"token":token] as! Dictionary<String, String>
         print("SENT")
         print(parameters)
         
@@ -89,8 +93,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
                 print(parameters)
                 if (parameters!["id"] != "-1"){
+                    print("IN HERE")
                     self.userid = parameters!["id"]!
                     self.logIn = true
+                    personalPhone = parameters!["phone"]
                     // might work but not sure we'll need to double check this
                     self.performSegue(withIdentifier: "mapscreensegue", sender: self)
                 }
@@ -108,7 +114,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         firstBox?.delegate = self
         secondBox?.delegate = self
         self.locationManager.delegate = self
-        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
         self.logInBut?.layer.cornerRadius = 10
         self.logInBut?.clipsToBounds = true

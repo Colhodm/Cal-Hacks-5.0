@@ -14,7 +14,8 @@ class trackDriver: UIViewController {
     var driverLocation: CLLocationCoordinate2D?
     var locationManager = CLLocationManager()
     var timer = Timer()
-
+    var myPhone: String?
+    @IBOutlet weak var myDriversPhone: UILabel!
     @IBOutlet weak var myBack: UIButton!
     
 
@@ -26,7 +27,7 @@ class trackDriver: UIViewController {
         self.locationManager.startUpdatingLocation()
         locationManager.requestWhenInUseAuthorization()
         let path = GMSMutablePath()
-        
+        myDriversPhone.text = myPhone
         let position = CLLocationCoordinate2D(latitude: 37.8716,longitude: -122.2727)
         
         
@@ -73,6 +74,9 @@ class trackDriver: UIViewController {
                 print(error.localizedDescription)
             }
             Alamofire.request(request).responseJSON { (response) in
+                if response.value == nil{
+                    return
+                }
                 let temp = response.value! as? Dictionary<String,Any>
                 if temp == nil{
                     return
@@ -98,8 +102,7 @@ class trackDriver: UIViewController {
             request.httpMethod = HTTPMethod.post.rawValue
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             let parameters = ["contractID":contractid!, "userID":finaluserid] as! Dictionary<String, String>
-            print(contractid!)
-            
+        
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
                 

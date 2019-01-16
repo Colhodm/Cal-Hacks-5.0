@@ -10,14 +10,18 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Alamofire
+import SafariServices
 
-class MapViewController: UIViewController  {
+class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
     var zoomLevel: Float = 2
     var timer = Timer()
     var logIn = false
     var placesClient: GMSPlacesClient!
     var userid = finaluserid
     var myArray = [String]()
+    var stateValue: String?
+    var registedForStripe = false
+    var mostRecentID = ""
 
     var querylen = 4
     var myPlacesSoFar = [GooglePlaces.GMSPlace]()
@@ -27,6 +31,7 @@ class MapViewController: UIViewController  {
 
     @IBOutlet weak var myBottom: UIView!
     
+    @IBOutlet weak var myStripeDropdown: UIView!
     //@IBOutlet weak var deliver: UIButton!
     
     @IBOutlet weak var myProfile: UIButton!
@@ -58,7 +63,6 @@ class MapViewController: UIViewController  {
         let final = (myfinal+temp+another).replacingOccurrences(of: " ", with: "+")
         let finalfinal = final.replacingOccurrences(of: ",", with: "%2C")
         if (UIApplication.shared.canOpenURL(URL(string:finalfinal)!)) {
-            print(finalfinal)
             UIApplication.shared.openURL(URL(string:
                 finalfinal)!)
         } else {
@@ -123,7 +127,6 @@ class MapViewController: UIViewController  {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
         if let temp = sender as? UIButton{
             // bug here when we return from the page of ordering    21q
-            print("BUGGING OUT AND CAUSING It to DISSAPEAR")
             temp.isHidden = true
         }
         
@@ -131,17 +134,15 @@ class MapViewController: UIViewController  {
     
    
     override func viewDidLoad() {
-        print("XXXXXX")
-        print(userid)
-        print("XXXXX")
         super.viewDidLoad()
         // Think about how to fix map stuff like being able to zoom in
         //mapView.addSubview(myView)
         //mapView.addSubview(myBottom)
+        myStripeDropdown.isHidden = true
         mySearchBut.layer.cornerRadius = 10
         mySearchBut.clipsToBounds = true
         mapView.addSubview(mySearch)
-        print(mySearchBut)
+        mapView.addSubview(myStripeDropdown)
 
 
 
@@ -192,7 +193,6 @@ class MapViewController: UIViewController  {
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
-        print("did i even run")
         return .lightContent
     }
     
@@ -213,7 +213,7 @@ class MapViewController: UIViewController  {
         let myCoords = (locationManager.location?.coordinate)!
         let driverLat = myCoords.latitude.description
         let driverLon = myCoords.longitude.description
-        let parameters = ["contractID":contractID, "userID":finaluserid,"driverLat":driverLat,"driverLon":driverLon] as! Dictionary<String, String>
+        let parameters = ["contractID":contractID, "userID":finaluserid,"driverLat":driverLat,"driverLon":driverLon,"phone":personalPhone,"deliveryToken":token] as! Dictionary<String, String>
         
         
         do {
@@ -231,6 +231,9 @@ class MapViewController: UIViewController  {
     func updateLocation(){
         
         //create the url with URL
+        if locationManager.location == nil{
+            return
+        }
         var request = URLRequest(url: URL(string: urlbase + "update_driver_position")!)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -254,7 +257,10 @@ class MapViewController: UIViewController  {
     
     
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        print(timer)
+        print(locationManager.location)
+    }
 
     @IBAction func unwindToVC1(segue:UIStoryboardSegue){
         
@@ -268,6 +274,10 @@ class MapViewController: UIViewController  {
     // this function makes the get request to the backend to write some information
     func makeGetRequest(){
             //create the url with URL
+        if locationManager.location == nil{
+            print("EXITING DISGRACEFULLY HERE")
+            return
+        }
         var finalDest = ""
         if self.finalDest != nil{
         finalDest = self.finalDest.name
@@ -323,7 +333,6 @@ class MapViewController: UIViewController  {
         //let path = GMSMutablePath()
         // latitude: 37.8716,longitude: -122.2727
         for name in responseData {
-            print("RUNNING")
             let myCurrent = name as? Dictionary<String,Any>
             let start_location = myCurrent!["startLocation"] as? [Double]
             let end_location = myCurrent!["endlocation"] as? [Double]
@@ -337,17 +346,95 @@ class MapViewController: UIViewController  {
             marker.map = mapView
             //path.add(CLLocationCoordinate2D(latitude: CLLocationDegrees(start_location![0]), longitude: CLLocationDegrees(start_location![1])))
         }
-       // if locationManager.location != nil{
-        //    path.add((locationManager.location?.coordinate)!)
-         //   mapView?.isMyLocationEnabled = true
-       // }
-        
-    //Update your mapView with path
-    //   let mapBounds = GMSCoordinateBounds(path: path)
-     //   let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
-      //  mapView.moveCamera(cameraUpdate)
-       // locationManager.startUpdatingLocation()
     }
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+        alignAccountID()
+    }
+    func alignAccountID(){
+            //create the url with URL
+            var request = URLRequest(url: URL(string: urlbase + "align_id")!)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters = [ "userID":finaluserid,"state":self.stateValue] as! Dictionary<String, Any>
+            
+            
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            Alamofire.request(request).responseJSON { (response) in
+                if response.value! == nil{
+                    return
+                }
+                let temp = response.value! as? String
+                print(temp)
+                if temp == "success"{
+                    // set boolean class condition we no longer need to launch safari
+                    self.registedForStripe = true
+                    self.makePostRequest(contractID: self.mostRecentID)
+                    self.myStripeDropdown.isHidden = true
+                } else {
+                    return
+                }
+            }
+    }
+    
+    @IBAction func confirmedDelivery(_ sender: Any) {
+
+        print("attempting to confirm your status the courier")
+        // need to add logic so that you dont have to register everytime
+        if !methodOfPayment{
+        let serverendpoint = urlbase + "payment_establishment"
+        let stateValue = String(arc4random())
+        self.stateValue = stateValue
+        let myLink = computeURL(string: "https://connect.stripe.com/express/oauth/authorize?redirect_uri=\(serverendpoint)&client_id=\(clientID!)&state={\(stateValue)}")
+        print(serverendpoint)
+        if myLink.absoluteString.count > 5{
+        let controller = SFSafariViewController(url: myLink)
+        self.present(controller, animated: true, completion: nil)
+        controller.delegate = self
+        print("finished opening this up")
+            }
+        } else {
+            self.makePostRequest(contractID: self.mostRecentID)
+            self.myStripeDropdown.isHidden = true
+
+        }
+    }
+    func computeURL(string: String) -> URL {
+        let testurlStr = string
+        let components = transformURLString(testurlStr)
+        print(components)
+        if let url = components?.url {
+            return url
+        } else {
+            return URL(string:"")!
+        }
+        return URL(string:"")!
+    }
+    
+    func transformURLString(_ string: String) -> URLComponents? {
+        guard let urlPath = string.components(separatedBy: "?").first else {
+            return nil
+        }
+        var components = URLComponents(string: urlPath)
+        if let queryString = string.components(separatedBy: "?").last {
+            components?.queryItems = []
+            let queryItems = queryString.components(separatedBy: "&")
+            for queryItem in queryItems {
+                guard let itemName = queryItem.components(separatedBy: "=").first,
+                    let itemValue = queryItem.components(separatedBy: "=").last else {
+                        continue
+                }
+                components?.queryItems?.append(URLQueryItem(name: itemName, value: itemValue))
+            }
+        }
+        return components!
+    }
+    
 }
 
 
@@ -364,11 +451,32 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        makePostRequest(contractID: (marker.snippet)!)
-        return false
+        myStripeDropdown.isHidden = false
+        self.mostRecentID = (marker.snippet)!
+        // will add in the logic to determine this
+
+        return true
+    }
+    /* set a custom Info Window */
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let view = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 100))
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 6
+        
+        let lbl1 = UILabel(frame: CGRect.init(x: 8, y: 8, width: view.frame.size.width - 16, height: 15))
+        lbl1.text = marker.title
+        view.addSubview(lbl1)
+        
+        let lbl2 = UILabel(frame: CGRect.init(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y + lbl1.frame.size.height + 3, width: view.frame.size.width - 16, height: 15))
+        lbl2.text = "This delivery has some metadata"
+        lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        view.addSubview(lbl2)
+        
+        return view
     }
     
 }
+
 extension MapViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //searchRecords(textField: searchBar.text!)
@@ -379,12 +487,10 @@ extension MapViewController: UISearchBarDelegate{
 
 extension MapViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(myArray.count)
         return myArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("AM IN HERE")
         let temp = "myArray"
         var cell = tableView.dequeueReusableCell(withIdentifier: temp)
         if cell == nil{
@@ -394,24 +500,6 @@ extension MapViewController: UITableViewDelegate,UITableViewDataSource {
         cell?.textLabel?.text = myArray[indexPath.row]
         return cell!
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let indexPath = tableView.indexPathForSelectedRow
-//
-//        let cell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
-//
-//        if cell.textLabel?.text?.count == 0{
-//            searchBar.text = "Sorry, no matches were found please enter a new query"
-//            //myOptions.isHidden = true
-//            return
-//        } else {
-//            searchBar.text = (cell.textLabel?.text as? String)
-//            finalDest = (cell.textLabel?.text)!
-//            myPlacesSoFar.append(self.placeNames[(cell.textLabel?.text)!]!)
-//           // myOptions.isHidden = true
-//            return
-//        }
-//    }
     
     
 }

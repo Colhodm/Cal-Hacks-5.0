@@ -40,7 +40,7 @@ class SignUp: UIViewController, UITextFieldDelegate {
         let password = self.password.text
         let screenid = self.screenid.text
 
-        let parameters = ["name":name!, "password": password!,"screenid": screenid,"phone":phoneNumber.text!] as! Dictionary<String, String>
+        let parameters = ["name":name!, "password": password!,"screenid": screenid,"phone":phoneNumber.text!,"token":token] as! Dictionary<String, String>
         
         
         do {

@@ -28,7 +28,6 @@ class PossibleContracts: UIViewController {
         scheduledTimerWithTimeInterval()
         makeGetRequest()
         self.myOptions.reloadData()
-        print("LOADED THE CONTRACTS CONFIRM PAGE")
 
         // Do any additional setup after loading the view.
     }
@@ -42,6 +41,10 @@ class PossibleContracts: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
     }
     @objc func makeGetRequest(){
+        if locationManager.location == nil{
+            return
+        }
+
         //create the url with URL
         var sourcefinal2 = ""
         var request = URLRequest(url: URL(string: urlbase + "get_contracts_spatial")!)

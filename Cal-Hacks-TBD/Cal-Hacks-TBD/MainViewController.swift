@@ -19,11 +19,16 @@ class MainViewController: UIViewController {
         print("RELOADED")
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(toggleSideMenu), name: NSNotification.Name(rawValue: "ToggleSideMenu"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dealWithOrder), name: NSNotification.Name(rawValue: "orderNear"), object: nil)
+
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(gestureRecognizer:)))
         myMap.addGestureRecognizer(tapRecognizer)
         tapRecognizer.delegate = self
         self.myMap.isUserInteractionEnabled = true
 
+    }
+    @objc func dealWithOrder(){
+        print("this function will eventually make a segue to the map page")
     }
     @objc func tapped(gestureRecognizer: UITapGestureRecognizer) {
         print("SHOULD BE RUNNING")
