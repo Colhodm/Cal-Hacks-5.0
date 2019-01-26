@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import GooglePlaces
 public var finaluserid: String!
-public var urlbase = "https://f0f5d34e.ngrok.io/"
+public var urlbase = "https://d0109730.ngrok.io/"
 public var personalPhone: String!
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstBox: UITextField!
@@ -91,7 +91,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if parameters == nil{
                     return 
                 }
-                print(parameters)
                 if (parameters!["id"] != "-1"){
                     print("IN HERE")
                     self.userid = parameters!["id"]!
@@ -120,13 +119,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.logInBut?.clipsToBounds = true
         self.logInBut?.titleLabel?.adjustsFontSizeToFitWidth = true
         print("I FINISHED LOADING")
+        UITextField.appearance().tintColor = .black
+        hideKeyboardWhenTappedAround()
+    
+    
+
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
 
-        if let vc = segue.destination as? SignUp
+        if segue.destination is SignUp
         {
             //signUpBox.isHidden = true
         }
@@ -134,7 +139,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         {
             vc.userid = userid
         }
-        if let vc = segue.destination as? MainViewController
+        if segue.destination is MainViewController
         {
              finaluserid = userid
         }
@@ -155,7 +160,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        guard let _: CLLocationCoordinate2D = manager.location?.coordinate else { return }
     }
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+}

@@ -55,11 +55,11 @@ class contractsConfirm: UITableViewController {
             for name in names! {
                 
                 let myCurrent = name as? Dictionary<String,Any>
-                let start_location = myCurrent!["startLocation"] as? [Double]
-                let end_location = myCurrent!["endlocation"] as? [Double]
+                _ = myCurrent!["startLocation"] as? [Double]
+                _ = myCurrent!["endlocation"] as? [Double]
                 let contract_id = myCurrent!["_id"] as? Dictionary<String,Any>
                 let validity = myCurrent!["valid"]
-                let price = myCurrent!["price"]
+                _ = myCurrent!["price"]
                 let temp = validity as! Bool
                 let another = myCurrent!["active"] as! Bool
                 if temp
@@ -90,8 +90,8 @@ class contractsConfirm: UITableViewController {
             }
         }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var temp = "myArray"
-        var cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell") as? UITableViewCell
+        let temp = "myArray"
+        var cell = tableView.dequeueReusableCell(withIdentifier: "StoreCell")
         if cell == nil{
             cell = UITableViewCell(style: .default, reuseIdentifier: temp)
         }

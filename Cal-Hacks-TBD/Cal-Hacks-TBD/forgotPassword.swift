@@ -32,7 +32,7 @@ class forgotPassword: UIViewController, UITextFieldDelegate {
         print("MIDDLE")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let email = sender.text
-        let parameters = ["name":email!] as! Dictionary<String, String>
+        let parameters = ["name":email!] 
         print("SENT")
         
         

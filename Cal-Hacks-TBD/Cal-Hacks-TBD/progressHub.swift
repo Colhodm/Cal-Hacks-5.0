@@ -28,15 +28,17 @@ class progressHub: UIViewController {
         self.myOptions.delegate = self
         self.myOptions.dataSource = self
         self.myOptions.isScrollEnabled = true;
+        makeGetRequest()
         scheduledTimerWithTimeInterval()
         self.myOptions.reloadData()
+        print(self.view.gestureRecognizers)
        // UNUserNotificationCenter.current().delegate = self
 
         // Do any additional setup after loading the view.
     }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
     }
     @objc func makeGetRequest(){
         //create the url with URL
@@ -68,6 +70,7 @@ class progressHub: UIViewController {
                 let price = myCurrent!["price"]
                 let temp = validity as! Bool
                 let description = myCurrent!["description"]
+                // need to implement another array to store the phone numbers just like the rest of the information
                 self.myPhone = myCurrent!["phoneNumber"] as! String!
                 let another = myCurrent!["active"] as! Bool
           
@@ -113,6 +116,21 @@ class progressHub: UIViewController {
     }
 
 }
+class HeadlineTableViewCellTwo: UITableViewCell{
+    var myContractID: String?
+    @IBOutlet weak var myImage: UIImageView!
+    
+    @IBOutlet weak var myReqName: UILabel!
+    @IBOutlet weak var myReqItem: UILabel!
+    
+    @IBOutlet weak var myAmount: UILabel!
+    @IBAction func cancel(_ sender: Any) {
+        cancel(contractID: self.myContractID!)
+    }
+    
+    
+    
+}
 
 extension progressHub: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
@@ -120,7 +138,7 @@ extension progressHub: UITableViewDelegate,UITableViewDataSource {
             return self.myTemp.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
+        let cell:HeadlineTableViewCellTwo = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCellTwo
         if (self.myTemp.count > 0){
             cell.myContractID = myTemp[indexPath.row]
             cell.myReqName?.text = myTempBackup[indexPath.row]
@@ -138,6 +156,7 @@ extension progressHub: UITableViewDelegate,UITableViewDataSource {
         let indexPath = tableView.indexPathForSelectedRow
         
         let cell = tableView.cellForRow(at: indexPath!)! as! HeadlineTableViewCell
+        print(cell.frame)
         self.clickedContractID = cell.myContractID!
         performSegue(withIdentifier: "toTrack", sender: self)
     }

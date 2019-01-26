@@ -118,6 +118,16 @@ class HeadlineTableViewCell: UITableViewCell{
     var myContractID: String?
     @IBOutlet weak var myAmount: UILabel!
   
+    @IBAction func EitherCancelOrAccept(_ sender: Any) {
+        print("someone tapped me")
+        if let vc = sender as? UIButton{
+            if vc.titleLabel?.text == "Accept"{
+                print("I should be attempting to accept this contract")
+            } else {
+                cancel(contractID: myContractID!)
+            }
+        }
+    }
     @IBOutlet weak var myReqItem: UILabel!
     @IBOutlet weak var myReqName: UILabel!
 }

@@ -19,20 +19,30 @@ class statushub: UIViewController {
     var myBackupPrices = [String]()
     var anotherDescription = [String]()
 
-
+    @IBOutlet var myMasterView: UIView!
+    
     @IBOutlet weak var myOptions: UITableView!
+    @IBAction func ButtonTaped(_ sender: Any) {
+        print("IM BEING TAPPED SUCCESFULLY")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.myOptions.delegate = self
         self.myOptions.dataSource = self
         self.myOptions.isScrollEnabled = true;
+        makeGetRequest()
         scheduledTimerWithTimeInterval()
         self.myOptions.reloadData()
+        print("XXXXXX")
+        print(self.view)
+        print(self.myMasterView)
+        print(self.myMasterView.gestureRecognizers)
+        print("XXXXXX")
         // Do any additional setup after loading the view.
     }
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: Selector("makeGetRequest"), userInfo: nil, repeats: true)
     }
     
     @objc func makeGetRequest(){
@@ -88,7 +98,19 @@ class statushub: UIViewController {
 
     
 }
-
+class HeadlineTableViewCellOne: UITableViewCell{
+    var myContractID: String?
+    @IBOutlet weak var myImage: UIImageView!
+    @IBOutlet weak var myReqName: UILabel!
+    @IBOutlet weak var myReqItem: UILabel!
+    
+    @IBAction func cancel(_ sender: Any) {
+        cancel(contractID: self.myContractID!)
+    }
+    
+    
+    @IBOutlet weak var myAmount: UILabel!
+}
 
 extension statushub: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) ->
@@ -96,8 +118,10 @@ extension statushub: UITableViewDelegate,UITableViewDataSource {
             return self.another.count
             }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:HeadlineTableViewCell = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCell
+        let cell:HeadlineTableViewCellOne = self.myOptions.dequeueReusableCell(withIdentifier:"cell") as! HeadlineTableViewCellOne
             if (self.anotherBackup.count > 0){
+                print("SETTING UP STUFF")
+                
                 cell.myContractID = another[indexPath.row]
                 cell.myReqName?.text = anotherBackup[indexPath.row]
                 // TODO ADD THE DSCRIPTION TO THIS
@@ -109,4 +133,28 @@ extension statushub: UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+}
+
+
+extension UITableViewCell {
+    func cancel(contractID: String){
+        var request = URLRequest(url: URL(string: urlbase + "cancel_contract")!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let parameters = ["contractID": contractID]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        Alamofire.request(request).responseJSON { (response) in
+            let names = response.value! as? [Any]
+            if names == nil{
+                return
+            }
+        
+    }
+}
 }

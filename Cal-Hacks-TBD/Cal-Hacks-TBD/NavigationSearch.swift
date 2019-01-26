@@ -152,6 +152,7 @@ extension NavigationSearch: UITableViewDelegate,UITableViewDataSource {
             finalDest = Destination.text!
             myPlacesSoFar.append(self.placeNames[(cell.textLabel?.text)!]!)
             myOptions.isHidden = true
+            print("performing a segue!")
             performSegue(withIdentifier: "backToMap", sender: self)
             return
         }

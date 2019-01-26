@@ -68,7 +68,7 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
     @IBOutlet weak var descriptionOfQuery: UITextField!
     @IBOutlet weak var myOptions: UITableView!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        self.view.endEditing(true)
         return true
     }
     func paymentContext(_ paymentContext: STPPaymentContext, didFailToLoadWithError error: Error) {
@@ -110,9 +110,6 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
     
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
         print("just requested my backend")
-        // instead of just calling complete charge we add the payment context to a global dictionary with contractid: paymentcontext
-        // as soon as they accept the contract pop it from dictionary and call the function below..
-        
         MyAPIClient.sharedClient.completeCharge(paymentResult,
                                                 amount: self.paymentContext?.paymentAmount ?? 5, contractID: self.mostRecentContractID,
                                                 shippingAddress: self.paymentContext?.shippingAddress,
@@ -228,12 +225,18 @@ class LoginController: UIViewController, UITextFieldDelegate ,STPPaymentContextD
         self.paymentContext = paymentContext
         self.paymentContext?.hostViewController = self
         self.paymentContext?.delegate = self
-
-
-
+        self.descriptionOfQuery.delegate = self
+        self.myTitle.delegate = self
+        self.price.delegate = self
+      
+    
 
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+   
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

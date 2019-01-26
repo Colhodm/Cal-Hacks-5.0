@@ -50,7 +50,7 @@ class CheckoutRowView: UIView {
     
 
     override func layoutSubviews() {
-        var theme = STPTheme.default()
+        let theme = STPTheme.default()
         self.title = "title"
         self.detail = "detail"
         let tappable = true

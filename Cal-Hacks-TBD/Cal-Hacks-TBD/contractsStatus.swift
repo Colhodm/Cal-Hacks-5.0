@@ -55,7 +55,6 @@ class contractsStatus: UIViewController {
             else{
                 print("Uh oh this did not seem to work")
             }
-            print(anothertemp)
         }
     }
     

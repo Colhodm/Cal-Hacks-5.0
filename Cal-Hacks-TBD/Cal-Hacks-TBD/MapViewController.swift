@@ -121,7 +121,9 @@ class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
         
     }
     @IBAction func unWindSearch(segue:UIStoryboardSegue) {
-        
+        print("IM BEING UNWINDEED")
+    }
+    @IBAction func unWindDelivery(segue:UIStoryboardSegue) {
     }
     @IBAction func toggleSideBar(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name("ToggleSideMenu"), object: nil)
@@ -174,13 +176,15 @@ class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
         }
         //Update your mapView with path
         let mapBounds = GMSCoordinateBounds(path: path)
-        let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
+        _ = GMSCameraUpdate.fit(mapBounds)
+        self.mapView.camera = GMSCameraPosition.camera(withTarget:(locationManager.location?.coordinate)! , zoom: 16.0,bearing: 0, viewingAngle: 0)
 
+        
 
-
-        mapView.moveCamera(cameraUpdate)
-        mapView.moveCamera(GMSCameraUpdate.zoom(to: 16))
-        mapView.center = self.view.center
+        print(path)
+        //mapView.moveCamera(cameraUpdate)
+        //mapView.moveCamera(GMSCameraUpdate.zoom(to: 16))
+        //mapView.center = self.view.center
 
         locationManager.startUpdatingLocation()
         makeGetRequest()
@@ -198,7 +202,7 @@ class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
     
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: Selector("wrapperTimed"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(MapViewController.wrapperTimed), userInfo: nil, repeats: true)
     }
     @objc func wrapperTimed(){
         makeGetRequest()
@@ -258,8 +262,27 @@ class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
     
     
     override func viewDidAppear(_ animated: Bool) {
-        print(timer)
-        print(locationManager.location)
+        self.mapView.camera = GMSCameraPosition.camera(withTarget:(locationManager.location?.coordinate)! , zoom: 16.0,bearing: 0, viewingAngle: 0)
+        if finalDest != nil {
+        let path = GMSMutablePath()
+        let position = finalDest.coordinate
+        //for each point you need, add it to your path
+        if locationManager.location != nil{
+            path.add((locationManager.location?.coordinate)!)
+            mapView?.isMyLocationEnabled = true
+        } else {
+            path.add(position)
+        }
+        let mapBounds = GMSCoordinateBounds(path: path)
+        let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
+        mapView.moveCamera(cameraUpdate)
+        mapView.moveCamera(GMSCameraUpdate.zoom(to: 16))
+        mapView.center = self.view.center
+        print(path)
+        print(mapView)
+        print(self.view.center)
+        print("finished unwinding")
+    }
     }
 
     @IBAction func unwindToVC1(segue:UIStoryboardSegue){
@@ -295,10 +318,10 @@ class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
             + "," + myCoords.longitude.description
         let sourcefinal =    tempone +  ")"
         if finalDest != "" {
-        let myCoords2 = placeNames[finalDest]?.coordinate
-            let quickone2 = "(" + (myCoords2?.latitude.description)!
+        let myCoords2 = self.finalDest.coordinate
+            let quickone2 = "(" + myCoords2.latitude.description
         let tempone2 = quickone2
-            + "," + (myCoords2?.longitude.description)!
+            + "," + (myCoords2.longitude.description)
           sourcefinal2 =    tempone2 +  ")"
     }
         var parameters = ["location":sourcefinal, "radius": "1"] as Dictionary<String, String>
@@ -385,7 +408,7 @@ class MapViewController: UIViewController ,SFSafariViewControllerDelegate {
     @IBAction func confirmedDelivery(_ sender: Any) {
 
         print("attempting to confirm your status the courier")
-        // need to add logic so that you dont have to register everytime
+        // need to add logic so that you dont have to register everytime FIX THIS this is abug rn
         if !methodOfPayment{
         let serverendpoint = urlbase + "payment_establishment"
         let stateValue = String(arc4random())
